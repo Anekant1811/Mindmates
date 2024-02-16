@@ -3,6 +3,7 @@ import "./globals.css";
 import State from "../../context/State";
 // import Navbar from "../app/components/common/navbar";
 import Navbar from "../(website)/components/common/navbar";
+import Footer from "../(website)/components/common/footer";
 // const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
         <State>
           <Navbar />
           {children}
+          <Footer />
         </State>
       </body>
     </html>

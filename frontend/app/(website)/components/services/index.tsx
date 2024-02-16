@@ -43,7 +43,7 @@ export default function ServicesIndex() {
           );
         })}
       </div>
-      <div className="dots flex justify-center gap-3 mt-5">
+      <div className="flex justify-center gap-3 mt-5">
         {ServiceCardData?.map((cardData) => {
           return (
             <div

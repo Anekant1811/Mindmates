@@ -12,9 +12,9 @@ export default function MenotrCard({
   return (
     <div
       className={cx(
-        "rounded-2xl my-8 py-8 px-4 h-auto bg-background w-1/3 flex flex-col items-center",
+        "rounded-2xl my-8 py-8 px-4 h-auto bg-background sm:w-1/3 flex flex-col items-center",
         {
-          "my-4": activeCard === cardData?.id,
+          "sm:my-4": activeCard === cardData?.id,
         }
       )}
       key={key}
@@ -37,7 +37,7 @@ export default function MenotrCard({
           return (
             <div
               key={i}
-              className="px-4 py-1 rounded-3xl border-[#1720488a] border"
+              className="text-[10px] md:text-xs px-4 py-1 rounded-3xl border-[#1720488a] border"
             >
               {i}
             </div>
@@ -51,7 +51,7 @@ export default function MenotrCard({
       >
         {cardData?.desc}
       </p>
-      <Button text={"Get Started"} classNames={""} />
+     
     </div>
   );
 }

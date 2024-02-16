@@ -16,18 +16,18 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="flex justify-around bg-background py-3 fixed w-full top-0 left-0">
+    <nav className="flex justify-between bg-background py-3 fixed w-full top-0 left-0">
       <Login />
-      <div className="logo">
+      <div className="logo my-auto max-w-fit">
         <Image
           src="/logos/logo.svg"
           alt="card"
           height={100}
           width={100}
-          className="h-auto w-auto "
+          className="h-auto sm:w-auto"
         />
       </div>
-      <div className="flex gap-5 items-center text-grey">
+      <div className="hidden sm:flex gap-5 items-center text-grey ">
         {navLinks?.map((item) => {
           return (
             <div key={item?.id} className="p">

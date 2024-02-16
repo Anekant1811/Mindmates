@@ -34,7 +34,7 @@ export default function MentorIndex() {
         Our <span className="text-gradient-01"> Mind Mates </span>
       </h2>
       <div className="w-full bg-gradient-to-tr from-[#d5e9f5] to-[#d4f5f5]">
-        <div className="w-4/5 sm:flex gap-y-3 gap-x-8 justify-center mx-auto">
+        <div className="w-4/5 sm:flex sm:gap-y-3 py-4 gap-x-8 justify-center mx-auto">
           {mentorCardsData?.map((cardData) => {
             return (
               <MenotrCard

@@ -7,3 +7,8 @@
   background-clip: text;
   color: transparent;
 }
+
+.footer li{
+  color: gray;
+  font-weight: 400;
+}
