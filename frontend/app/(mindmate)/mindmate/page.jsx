@@ -1,6 +1,5 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
-import Navbar from "../Components/Navbar";
 import Image from "next/image";
 
 import { AiOutlineBell, AiOutlineEye } from "react-icons/ai";
@@ -11,13 +10,15 @@ import BASE_URL from "../../url";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import Context from "../../../context/Context";
+import Navbar from "../Components/Navbar";
+import ToggleButton from '../Components/ToggleButton'
 
 const Trubuddy = () => {
   const [showEdit, setShowEdit] = useState(false);
   const { mindmate, setMindmate } = useContext(Context);
   const history = useRouter();
 
-  useEffect(() => {
+  let getData = () => {
     axios
       .post(`${BASE_URL}/mindmate/get`, { token: getCookie("token") })
       .then((res) => {
@@ -26,22 +27,31 @@ const Trubuddy = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
   return (
     <div>
       <Navbar />
-      <EditMindmate showEdit={showEdit} setShowEdit={setShowEdit} />
+      <ToggleButton />
+      <EditMindmate
+        showEdit={showEdit}
+        setShowEdit={setShowEdit}
+        getData={getData}
+      />
       <div className="absolute top-0 left-0 z-0">
         <Image
           src={bg}
           width={10000}
           height={10000}
           alt="Bg"
-          className="h-[20vh] md:h-[45vh] object-cover object-center"
+          className="h-[20vh] md:h-[50vh] object-cover object-center"
         />
       </div>
-      <div className="absolute z-10 bg-white w-[85vw] md:w-[70vw] h-[85vh] md:h-[60vh] flex flex-col items-center rounded-lg bottom-0 left-1/2 -translate-x-1/2 shadow-xl shadow-gray-500">
+      <div className="absolute z-10 bg-white w-[85vw] md:w-[70vw] h-[85vh] md:h-[55vh] flex flex-col items-center rounded-lg bottom-0 left-1/2 -translate-x-1/2 shadow-xl shadow-gray-500">
         <div className="flex items-start justify-between p-2 md:p-4 w-full">
           <div className="flex items-center">
             <AiOutlineEye
@@ -57,7 +67,7 @@ const Trubuddy = () => {
               width={10000}
               height={10000}
               alt="Profile"
-              className="w-[34vw] md:w-[12vw] h-[34vw] md:h-[12vw] object-cover object-center rounded-lg"
+              className="w-[34vw] md:w-[12vw] h-[34vw] border border-lightGreen md:h-[12vw] object-cover object-center rounded-lg"
             />
             <h1 className="text-lg text-center md:text-2xl mt-0.5 font-medium">
               {mindmate?.name} ({mindmate?.anonymous})
@@ -89,20 +99,20 @@ const Trubuddy = () => {
               value: mindmate?.email,
             },
             {
-              title: "City",
-              value: mindmate?.city,
-            },
-            {
-              title: "State",
-              value: mindmate?.state,
+              title: "Address",
+              value: mindmate?.address,
             },
             {
               title: "Expertise",
-              value: mindmate?.expertise,
+              value: mindmate?.expertise[0],
             },
             {
               title: "Availability",
               value: mindmate?.availability,
+            },
+            {
+              title: "Meeting Url",
+              value: mindmate?.meeting_url,
             },
           ].map((e) => {
             return (

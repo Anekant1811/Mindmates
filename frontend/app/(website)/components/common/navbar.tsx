@@ -11,7 +11,7 @@ export default function Navbar() {
     { id: 4, title: "About Us", url: "" },
   ];
   return (
-    <nav className="flex justify-around bg-background">
+    <nav className="flex justify-around bg-background py-3 fixed w-full top-0 left-0">
       <div className="logo">
         <Image
           src="/logos/logo.svg"

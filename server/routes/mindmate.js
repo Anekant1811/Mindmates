@@ -60,11 +60,24 @@ mindmate.post("/update", validateToken, async (req, res) => {
     address,
     anonymous,
     meeting_url,
+    profile,
+    availability,
   } = req.body;
 
   const response = await Mindmate.updateOne(
     { _id: id },
-    { email, password, name, bio, expertise, address, anonymous, meeting_url }
+    {
+      email,
+      password,
+      name,
+      bio,
+      expertise,
+      address,
+      anonymous,
+      meeting_url,
+      profile,
+      availability,
+    }
   );
   res.send(response);
 });

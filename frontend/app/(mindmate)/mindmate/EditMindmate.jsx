@@ -24,21 +24,22 @@ const customStyles = {
   },
 };
 
-const EditMindmate = ({ showEdit, setShowEdit }) => {
+const EditMindmate = ({ showEdit, setShowEdit, getData }) => {
   const { mindmate } = useContext(Context);
   const [page, setPage] = useState(1);
   const [user, setUser] = useState({
     name: "",
     email: "",
     bio: "",
-    expertise: "",
+    expertise: [],
     address: "",
     anonymous: "",
     meeting_url: "",
+    availability: "",
   });
-  const [speaks, setSpeaks] = useState("");
   const [experty, setExperty] = useState("");
-  const [personality, setPersonality] = useState("");
+  const [stime, setStime] = useState("");
+  const [etime, setEtime] = useState("");
 
   useEffect(() => {
     setUser({
@@ -49,20 +50,29 @@ const EditMindmate = ({ showEdit, setShowEdit }) => {
       profile: mindmate?.profile,
       expertise: mindmate?.expertise,
       meeting_url: mindmate?.meeting_url,
+      address: mindmate?.address,
+      availability: mindmate?.availability,
     });
+
+    setStime(mindmate?.availability?.split("-")[0]);
+    setEtime(mindmate?.availability?.split("-")[1]);
   }, [mindmate]);
 
   const onSubmit = () => {
+    console.log(stime + "-" + etime);
+    console.log(user);
+    console.log(user?.availability);
     axios
       .post(`${BASE_URL}/mindmate/update`, {
         ...user,
-        token: getCookie("mindmate_token"),
+        availability: stime + "-" + etime,
+        token: getCookie("token"),
       })
       .then((res) => {
         if (res.status == 200) {
-          getmindmateLogin();
-          setShowmindmateEdit(false);
+          getData();
           toast.success("Updated successfully");
+          setShowEdit(false);
         }
       })
       .catch((err) => {
@@ -129,24 +139,10 @@ const EditMindmate = ({ showEdit, setShowEdit }) => {
                     },
                   },
                   {
-                    title: "City",
-                    value: user?.city,
+                    title: "Address",
+                    value: user?.address,
                     onchange: (e) => {
-                      setUser({ ...user, city: e.target.value });
-                    },
-                  },
-                  {
-                    title: "State",
-                    value: user?.state,
-                    onchange: (e) => {
-                      setUser({ ...user, state: e.target.value });
-                    },
-                  },
-                  {
-                    title: "Availability",
-                    value: user?.availability,
-                    onchange: (e) => {
-                      setUser({ ...user, availability: e.target.value });
+                      setUser({ ...user, address: e.target.value });
                     },
                   },
                   {
@@ -175,238 +171,107 @@ const EditMindmate = ({ showEdit, setShowEdit }) => {
                     </div>
                   );
                 })}
+                <div className="mb-3 mx-auto">
+                  <p className={`font-semibold`}>Availability :</p>
+                  <div className="grid grid-cols-2 mt-1.5 gap-x-2 px-2">
+                    <input
+                      type="time"
+                      value={stime}
+                      className="border-2 rounded-lg px-1 py-0.5 text-sm"
+                      onChange={(e) => {
+                        setStime(e.target.value);
+                        setUser({
+                          ...user,
+                          availability: stime + "-" + etime,
+                        });
+                      }}
+                    />
+                    <input
+                      type="time"
+                      className="border-2 rounded-lg px-1 py-0.5 text-sm"
+                      value={etime}
+                      onChange={(e) => {
+                        setEtime(e.target.value);
+                        setUser({
+                          ...user,
+                          availability: stime + "-" + etime,
+                        });
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
             ) : page == 2 ? (
               <div className="mt-5">
-                <div className="grid grid-cols-2">
-                  <div className="mb-3 mx-auto">
-                    <p className={`font-semibold`}>Profile Photo :</p>
-                    <input
-                      type={"file"}
-                      onChange={(e) => onFileSubmit(e)}
-                      className={`border-2 px-3 py-1 rounded-lg w-11/12 md:w-full outline-none mt-1 border-newBlue`}
-                    />
-                  </div>
-                  {[
-                    {
-                      title: "Gender",
-                      value: user?.gender,
-                      onchange: (e) => {
-                        setUser({ ...user, gender: e.target.value });
-                      },
-                    },
-                  ]?.map((e) => {
-                    return (
-                      <div key={e?.title} className="mb-3 mx-auto">
-                        <p className={`font-semibold`}>{e?.title} :</p>
-                        <input
-                          type={"text"}
-                          placeholder={e?.title}
-                          disabled={e?.title === "Name" || e?.title == "Email"}
-                          value={e?.value}
-                          onChange={e?.onchange}
-                          className={`${
-                            e?.title === "Name" || e?.title == "Email"
-                              ? "text-gray-500"
-                              : ""
-                          }  border-2 px-3 py-1 rounded-lg w-11/12 md:w-full outline-none mt-1 border-newBlue`}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
                 <div className="mb-3 mx-auto">
-                  <p className={`font-semibold`}>Languages :</p>
-                  <div className="mt-2 px-1 md:px-3">
-                    {user?.languages?.map((e, i) => {
-                      return (
-                        <div className="flex items-center w-full mb-4" key={i}>
-                          <input
-                            type="text"
-                            value={e}
-                            onChange={(val) => {
-                              let arr = user.languages;
-                              let index = arr.indexOf(e);
-                              arr[index] = val.target.value;
-                              setUser({
-                                ...user,
-                                languages: arr,
-                              });
-                            }}
-                            className="border outline-none text-gray-600 w-full rounded-md px-4 py-1"
-                          />
-                          <div className="pl-4">
-                            <AiOutlineClose
-                              className="bg-lightRed p-2 rounded-full text-red-500 hover:bg-red-500 hover:text-white transition-all cursor-pointer"
-                              size={35}
-                              onClick={(event) => {
-                                let arr = user?.speaks;
-                                let pos = arr.indexOf(e);
-                                arr.splice(pos, 1);
-                                setUser({
-                                  ...user,
-                                  languages: arr,
-                                });
-                              }}
-                            />
-                          </div>
-                        </div>
-                      );
-                    })}
-                    <div className="flex items-center w-full mb-4">
-                      <input
-                        type="text"
-                        value={speaks}
-                        placeholder="Speaks"
-                        onChange={(e) => {
-                          setSpeaks(e.target.value);
-                        }}
-                        className="border-2 border-newBlue outline-none text-gray-600 w-full rounded-md px-4 py-1"
-                      />
-                      <div
-                        onClick={(event) => {
-                          setUser({
-                            ...user,
-                            languages: [...user.languages, speaks],
-                          });
-                          setSpeaks("");
-                        }}
-                        className="ml-2 md:ml-4 w-[46vw] md:w-[9vw] flex justify-center items-center py-1 bg-green-500 text-white rounded-lg cursor-pointer "
-                      >
-                        Save
-                      </div>
-                    </div>
-                  </div>
+                  <p className={`font-semibold`}>Profile Photo :</p>
+                  <input
+                    type={"file"}
+                    onChange={(e) => onFileSubmit(e)}
+                    className={`border-2 px-3 py-1 rounded-lg w-11/12 md:w-full outline-none mt-1 border-newBlue`}
+                  />
                 </div>
               </div>
             ) : page == 3 ? (
-              <div className="mt-5">
-                <div className="mb-3 mx-auto">
-                  <p className={`font-semibold`}>Other Expertise :</p>
-                  <div className="mt-2 px-3 overflow-scroll max-h-[45vh] md:max-h-[60vh]">
-                    {user?.otherExpertise?.map((e, i) => {
-                      return (
-                        <div className="flex items-center w-full mb-4" key={i}>
-                          <input
-                            type="text"
-                            value={e}
-                            onChange={(val) => {
-                              let arr = user.otherExpertise;
-                              let index = arr.indexOf(e);
-                              arr[index] = val.target.value;
+              <div className="mb-3 mt-5 mx-auto overflow-hidden">
+                <p className={`font-semibold`}>Other Expertise :</p>
+                <div className="mt-2 px-3 max-h-[45vh] md:max-h-[60vh] overflow-y-auto">
+                  {user?.expertise?.map((e, i) => {
+                    return (
+                      <div className="flex items-center w-full mb-4" key={i}>
+                        <input
+                          type="text"
+                          value={e}
+                          onChange={(val) => {
+                            let arr = user.expertise;
+                            let index = arr.indexOf(e);
+                            arr[index] = val.target.value;
+                            setUser({
+                              ...user,
+                              expertise: arr,
+                            });
+                          }}
+                          className="border outline-none text-gray-600 w-full rounded-md px-4 py-1"
+                        />
+                        <div className="pl-4">
+                          <AiOutlineClose
+                            className="bg-lightRed p-2 rounded-full text-red-500 hover:bg-red-500 hover:text-white transition-all cursor-pointer"
+                            size={35}
+                            onClick={(event) => {
+                              let arr = user?.expertise;
+                              let pos = arr.indexOf(e);
+                              arr.splice(pos, 1);
                               setUser({
                                 ...user,
-                                otherExpertise: arr,
+                                expertise: arr,
                               });
                             }}
-                            className="border outline-none text-gray-600 w-full rounded-md px-4 py-1"
                           />
-                          <div className="pl-4">
-                            <AiOutlineClose
-                              className="bg-lightRed p-2 rounded-full text-red-500 hover:bg-red-500 hover:text-white transition-all cursor-pointer"
-                              size={35}
-                              onClick={(event) => {
-                                let arr = user?.otherExpertise;
-                                let pos = arr.indexOf(e);
-                                arr.splice(pos, 1);
-                                setUser({
-                                  ...user,
-                                  otherExpertise: arr,
-                                });
-                              }}
-                            />
-                          </div>
                         </div>
-                      );
-                    })}
-                    <div className="flex items-center w-full mb-4">
-                      <input
-                        type="text"
-                        value={experty}
-                        placeholder="Expertise"
-                        onChange={(e) => {
-                          setExperty(e.target.value);
-                        }}
-                        className="border-2 border-newBlue outline-none text-gray-600 w-full rounded-md px-4 py-1"
-                      />
-                      <div
-                        onClick={(event) => {
-                          setUser({
-                            ...user,
-                            otherExpertise: [...user.otherExpertise, experty],
-                          });
-                          setExperty("");
-                        }}
-                        className="ml-2 md:ml-4 w-[46vw] md:w-[9vw] flex justify-center items-center py-1 bg-green-500 text-white rounded-lg cursor-pointer "
-                      >
-                        Save
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : page == 4 ? (
-              <div className="mt-5">
-                <div className="mb-3 mx-auto">
-                  <p className={`font-semibold`}>Personalilty :</p>
-                  <div className="mt-2 px-3 overflow-scroll max-h-[45vh] md:max-h-[60vh]">
-                    {user?.personality?.map((e, i) => {
-                      return (
-                        <div className="flex items-center w-full mb-4" key={i}>
-                          <input
-                            type="text"
-                            value={e}
-                            onChange={(val) => {
-                              let arr = user.personality;
-                              let index = arr.indexOf(e);
-                              arr[index] = val.target.value;
-                              setUser({
-                                ...user,
-                                personality: arr,
-                              });
-                            }}
-                            className="border outline-none text-gray-600 w-full rounded-md px-4 py-1"
-                          />
-                          <div className="pl-4">
-                            <AiOutlineClose
-                              className="bg-lightRed p-2 rounded-full text-red-500 hover:bg-red-500 hover:text-white transition-all cursor-pointer"
-                              size={35}
-                              onClick={(event) => {
-                                let arr = user?.personality;
-                                let pos = arr.indexOf(e);
-                                arr.splice(pos, 1);
-                                setUser({
-                                  ...user,
-                                  personality: arr,
-                                });
-                              }}
-                            />
-                          </div>
-                        </div>
-                      );
-                    })}
-                    <div className="flex items-center w-full mb-4">
-                      <input
-                        type="text"
-                        value={personality}
-                        placeholder="Personality"
-                        onChange={(e) => {
-                          setPersonality(e.target.value);
-                        }}
-                        className="border-2 border-newBlue outline-none text-gray-600 w-full rounded-md px-4 py-1"
-                      />
-                      <div
-                        onClick={(event) => {
-                          setUser({
-                            ...user,
-                            personality: [...user.personality, personality],
-                          });
-                          setPersonality("");
-                        }}
-                        className="ml-2 md:ml-4 w-[46vw] md:w-[9vw] flex justify-center items-center py-1 bg-green-500 text-white rounded-lg cursor-pointer "
-                      >
-                        Save
-                      </div>
+                    );
+                  })}
+                  <div className="flex items-center w-full mb-4">
+                    <input
+                      type="text"
+                      value={experty}
+                      placeholder="Expertise"
+                      onChange={(e) => {
+                        setExperty(e.target.value);
+                      }}
+                      className="border-2 border-newBlue outline-none text-gray-600 w-full rounded-md px-4 py-1"
+                    />
+                    <div
+                      onClick={(event) => {
+                        setUser({
+                          ...user,
+                          expertise: [...user.expertise, experty],
+                        });
+                        setExperty("");
+                      }}
+                      className="ml-2 md:ml-4 w-[46vw] md:w-[9vw] flex justify-center items-center py-1 bg-green-500 text-white rounded-lg cursor-pointer "
+                    >
+                      Save
                     </div>
                   </div>
                 </div>
@@ -429,7 +294,7 @@ const EditMindmate = ({ showEdit, setShowEdit }) => {
                 </div>
               </div>
             )}
-            {page != 5 ? (
+            {page != 4 ? (
               <div className="flex items-center justify-evenly">
                 <button
                   disabled={page == 1}

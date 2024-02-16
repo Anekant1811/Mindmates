@@ -13,10 +13,11 @@ const mindmateSchema = new mongoose.Schema({
   },
   password: String,
   bio: String,
-  expertise: String,
+  expertise: Array,
   address: String,
   anonymous: String,
   meeting_url: String,
+  availability: String,
 });
 
 const Mindmate = mongoose.model("Mindmate", mindmateSchema);
