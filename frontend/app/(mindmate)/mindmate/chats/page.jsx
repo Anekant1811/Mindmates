@@ -3,83 +3,72 @@ import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../../Components/Navbar";
 import Image from "next/image";
 
-import bg from "../../../(website)/Assets/User/purple bg.png";
-import dotBg from "../../../(website)/Assets/User/dots bg.png";
+import bg from "../../../Assets/bg.jpg";
 import { AiOutlineBell } from "react-icons/ai";
-import Context from "../../../Context/Context";
 import { usePathname, useRouter } from "next/navigation";
-import { BASE_URL } from "../../../(website)/Components/Utils/url";
 import axios from "axios";
 import { getCookie } from "cookies-next";
+import Context from "../../../../context/Context";
+import BASE_URL from "../../../url";
 
 const Trubuddy = () => {
-  const { trubuddy, getTrubuddyLogin } = useContext(Context);
+  const { mindmate, setMindmate } = useContext(Context);
   const history = useRouter();
   const pathname = usePathname();
 
+  let getData = () => {
+    axios
+      .post(`${BASE_URL}/mindmate/get`, { token: getCookie("token") })
+      .then((res) => {
+        setMindmate(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
-    getTrubuddyLogin();
+    getData();
   }, []);
 
   return (
-    <div>
+    <div className="">
       <Navbar />
       <div className="absolute top-0 left-0 z-0">
         <Image
           src={bg}
           alt="Bg"
-          className="h-[20vh] md:h-[35vh] object-cover object-center"
+          className="h-[20vh] md:h-[50vh] w-[100vw] object-cover object-center"
         />
-        <Image src={dotBg} alt="Dots bg" className="md:block hidden" />
       </div>
-      <div className="absolute z-10 bg-white w-[85vw] md:w-[70vw] h-[85vh] md:h-[75vh] flex flex-col items-center rounded-lg bottom-0 left-1/2 -translate-x-1/2 shadow-xl shadow-gray-500">
+      <div className="absolute z-10 bg-white w-[85vw] md:w-[70vw] h-[85vh] md:h-[55vh] flex flex-col items-center rounded-lg bottom-0 left-1/2 -translate-x-1/2 shadow-xl shadow-gray-500">
         <div className="p-2 w-full flex items-center">
-          <AiOutlineBell
-            className="text-newDarkBlue"
-            size={
-              typeof window != "undefined"
-                ? window.innerWidth < 550
-                  ? 25
-                  : 30
-                : 0
-            }
-          />
           <p
             className="bg-black text-white text-sm md:text-base px-5 mt-0.5 py-0.5 ml-3 cursor-pointer w-fit rounded-lg"
             onClick={(e) => {
-              history.push("/trubuddy");
+              history.push("/mindmate");
             }}
           >
-            @uid{trubuddy?._id?.slice(trubuddy?._id?.length - 4)}
+            @uid{mindmate?._id?.slice(mindmate?._id?.length - 4)}
           </p>
           <p
             onClick={(e) => {
-              history.push("/trubuddy/buddies");
+              history.push("/mindmate/chats");
             }}
             className={`text-black font-semibold ml-2 md:ml-5 ${
-              pathname.includes("/buddies") ? "text-newBlue" : "text-black"
+              pathname.includes("/chats") ? "text-darkGreen" : "text-black"
             } cursor-pointer hover:scale-105 transition-all`}
           >
             Chats
           </p>
-          <p
-            onClick={(e) => {
-              history.push("/trubuddy/community");
-            }}
-            className={`text-black font-semibold ml-2 md:ml-5 ${
-              pathname.includes("/community") ? "text-newBlue" : "text-black"
-            } cursor-pointer hover:scale-105 transition-all`}
-          >
-            Community
-          </p>
         </div>
-        {trubuddy?.buddies?.length == 0 ? (
-          <div className="w-full flex items-center justify-center">
-            <p className="text-xl">Sorry, You don&apos;t have any Buddy</p>
+        {!mindmate?.buddies ? (
+          <div className="w-full flex items-center justify-center text-gray">
+            <p className="text-xl">Sorry, You don&apos;t have any mate</p>
           </div>
         ) : (
           <div className="w-full grid overflow-y-auto pb-5 grid-cols-2 gap-3 md:gap-5 px-3 md:px-5 pt-2 md:pt-3">
-            {trubuddy?.buddies?.map((e) => {
+            {mindmate?.buddies?.map((e) => {
               return <BuddyBlock id={e} key={e} />;
             })}
           </div>

@@ -8,27 +8,30 @@ export default function MenotrCard({
   cardData,
   key,
 }) {
+  console.log(activeCard === cardData?.id);
   return (
     <div
       className={cx(
-        "rounded-2xl my-4 py-8 px-4 bg-background w-1/3 flex flex-col items-center",
+        "rounded-2xl my-8 py-8 px-4 h-auto bg-background w-1/3 flex flex-col items-center",
         {
-          "my-0": activeCard === cardData?.id,
+          "my-4": activeCard === cardData?.id,
         }
       )}
       key={key}
       onClick={() => setActiveCard(cardData?.id)}
     >
-      <div className="w-auto h-auto mt-8 rounded-[100%] bg-gradient-to-r from-lightGreen to-darkGreen p-1">
+      <div className="w-[8vw] h-[8vw] mt-8 rounded-[100%] bg-gradient-to-r from-lightGreen to-darkGreen p-1">
         <Image
           src={cardData?.avatarUrl}
           alt="card"
           height={100}
           width={100}
-          className="h-full w-full rounded-[100%]"
+          className="h-full w-full object-cover object-center rounded-full"
         />
       </div>
-      <h2 className="text-xl font-semibold text-center">{cardData?.title}</h2>
+      <h2 className="text-2xl font-semibold text-center mt-1">
+        {cardData?.title}
+      </h2>
       <div className="flex gap-2 my-4">
         {cardData?.category?.map((i) => {
           return (
@@ -42,7 +45,7 @@ export default function MenotrCard({
         })}
       </div>
       <p
-        className={cx("text-center text-xs", {
+        className={cx("text-center text-sm mb-3", {
           "text-[#172048]": activeCard !== cardData?.id,
         })}
       >
