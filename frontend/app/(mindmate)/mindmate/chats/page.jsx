@@ -4,7 +4,6 @@ import Navbar from "../../Components/Navbar";
 import Image from "next/image";
 
 import bg from "../../../Assets/bg.jpg";
-import { AiOutlineBell } from "react-icons/ai";
 import { usePathname, useRouter } from "next/navigation";
 import axios from "axios";
 import { getCookie } from "cookies-next";
@@ -62,13 +61,13 @@ const Trubuddy = () => {
             Chats
           </p>
         </div>
-        {!mindmate?.buddies ? (
+        {!mindmate?.mates ? (
           <div className="w-full flex items-center justify-center text-gray">
             <p className="text-xl">Sorry, You don&apos;t have any mate</p>
           </div>
         ) : (
-          <div className="w-full grid overflow-y-auto pb-5 grid-cols-2 gap-3 md:gap-5 px-3 md:px-5 pt-2 md:pt-3">
-            {mindmate?.buddies?.map((e) => {
+          <div className="w-full grid overflow-y-auto pb-5 grid-cols-3 gap-3 md:gap-5 px-3 md:px-5 pt-2 md:pt-3">
+            {mindmate?.mates?.map((e) => {
               return <BuddyBlock id={e} key={e} />;
             })}
           </div>
@@ -84,10 +83,9 @@ const BuddyBlock = ({ id }) => {
 
   useEffect(() => {
     axios
-      .post(`${BASE_URL}/login/get-one/${id}`, {
-        token: getCookie("trubuddy_token"),
-      })
+      .post(`${BASE_URL}/login/get-one/${id}`)
       .then((res) => {
+        console.log(res.data);
         setUser(res.data);
       })
       .catch((err) => {
@@ -100,7 +98,7 @@ const BuddyBlock = ({ id }) => {
       className="bg-gray-200 flex p-1 md:p-2 rounded-md relative shadow-md shadow-gray-400 cursor-pointer"
       onClick={(e) => {
         e.preventDefault();
-        history.push(`/trubuddy/buddies/${id}`);
+        history.push(`/mindmate/chats/${id}`);
       }}
     >
       <Image
@@ -108,10 +106,10 @@ const BuddyBlock = ({ id }) => {
         width={10000}
         height={10000}
         alt="Profile"
-        className="w-[12vw] h-[12vw] object-cover object-center md:w-[5vw] md:h-[5vw] rounded-full border-2 border-newBlue"
+        className="w-[12vw] h-[12vw] object-cover object-center md:w-[3vw] md:h-[3vw] rounded-full border-2 border-lightGreen"
       />
       <div className="ml-1 md:ml-3">
-        <h1 className="md:text-xl text-sm font-semibold">
+        <h1 className="md:text-lg text-darkGreen text-sm font-semibold">
           {user?.anonymous ? user?.anonymous : user?.name}
         </h1>
       </div>

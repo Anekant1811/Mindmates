@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import { Toaster } from "react-hot-toast";
 import Context from "../../../../context/Context";
 import Image from "next/image";
-import BASE_URL from "../../../url/index";
+import BASE_URL, { URL } from "../../../url/index";
 
 const customStyles = {
   overlay: {
@@ -37,7 +37,7 @@ const Login = () => {
         <div>
           <div
             onClick={(e) => {
-              window.open(`${BASE_URL}/login/auth/google/callback`);
+              window.open(`${URL}/auth/google/callback`);
             }}
             className="cursor-pointer border border-lightGreen rounded-md"
           >

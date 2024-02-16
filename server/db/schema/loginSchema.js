@@ -8,6 +8,7 @@ const loginSchema = new mongoose.Schema({
   googleId: String,
   name: String,
   profile: String,
+  mindmates: Array,
 });
 
 const User = mongoose.model("Users", loginSchema);

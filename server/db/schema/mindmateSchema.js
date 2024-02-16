@@ -18,6 +18,7 @@ const mindmateSchema = new mongoose.Schema({
   anonymous: String,
   meeting_url: String,
   availability: String,
+  mates: Array,
 });
 
 const Mindmate = mongoose.model("Mindmate", mindmateSchema);

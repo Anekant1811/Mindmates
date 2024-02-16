@@ -1,13 +1,15 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
 import BASE_URL from "../../../url/index";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { setCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import Context from "../../../../context/Context";
+import Image from "next/image";
+import bg from "../../../Assets/positive-login.png";
 
 const Mindmate = () => {
   const [user, setUser] = useState({ email: "", password: "" });
@@ -15,66 +17,76 @@ const Mindmate = () => {
   const history = useRouter();
   const { setMindmate } = useContext(Context);
 
+  useEffect(() => {
+    if (getCookie("token")) {
+      history.push("/mindmate");
+    }
+  }, []);
+
   return (
     <div className="flex items-center justify-center w-full text-gray h-[100vh]">
       <Toaster />
-      <div className="w-[16vw] items-center flex flex-col">
-        <h1 className="text-2xl font-bold bg-clip-text bg-gradient-to-r from-lightGreen to-darkGreen text-transparent">
-          Login as Mindmate
-        </h1>
-        <input
-          type="text"
-          value={user?.email}
-          onChange={(e) => {
-            setUser({ ...user, email: e.target.value });
-          }}
-          placeholder="Enter email"
-          className="border outline-none px-3 py-1 my-4 rounded-md w-full"
-        />
-        <div className="w-full flex items-center relative">
+      <div className="bg-background w-[50vw] h-full flex items-center justify-center">
+        <Image src={bg} alt="Rafiki" className="w-8/12" />
+      </div>
+      <div className="w-[50vw] px-10 text-gray flex flex-col">
+        <h1 className="text-3xl font-bold">WELCOME BACK!</h1>
+        <p className="my-2 tracking-wider">Already have an Account, Log in</p>
+        <div className="w-9/12">
           <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Enter password"
-            value={user?.password}
+            type="text"
+            value={user?.email}
             onChange={(e) => {
-              setUser({ ...user, password: e.target.value });
+              setUser({ ...user, email: e.target.value });
             }}
-            className="border outline-none px-3 py-1 rounded-md w-full"
+            placeholder="Enter email"
+            className="border outline-none px-5 py-1.5 mb-4 mt-2 rounded-full text-lg w-full"
           />
-          <div
-            className="text-xl absolute right-3 cursor-pointer"
-            onClick={() => {
-              setShowPassword(!showPassword);
-            }}
-          >
-            {showPassword ? <IoMdEye /> : <IoMdEyeOff />}
+          <div className="w-full flex items-center relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter password"
+              value={user?.password}
+              onChange={(e) => {
+                setUser({ ...user, password: e.target.value });
+              }}
+              className="border outline-none px-5 py-1.5 rounded-full text-lg w-full"
+            />
+            <div
+              className="text-2xl absolute right-3 cursor-pointer"
+              onClick={() => {
+                setShowPassword(!showPassword);
+              }}
+            >
+              {showPassword ? <IoMdEye /> : <IoMdEyeOff />}
+            </div>
           </div>
+          <button
+            onClick={(e) => {
+              if (!user?.email || !user?.password) {
+                toast.error("Please fill all the details");
+              } else {
+                axios
+                  .post(`${BASE_URL}/mindmate/login`, { ...user })
+                  .then((response) => {
+                    if (response.status == 200) {
+                      history.push("/mindmate");
+                      setMindmate(response.data.user);
+                      setCookie("token", response.data.jwtToken);
+                    } else {
+                      toast.error(response.data);
+                    }
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
+              }
+            }}
+            className="border py-1.5 px-5 mt-4 rounded-full text-lg w-full font-medium bg-gradient-to-r from-lightGreen to-darkGreen text-white"
+          >
+            Sign In
+          </button>
         </div>
-        <button
-          onClick={(e) => {
-            if (!user?.email || !user?.password) {
-              toast.error("Please fill all the details");
-            } else {
-              axios
-                .post(`${BASE_URL}/mindmate/login`, { ...user })
-                .then((response) => {
-                  if (response.status == 200) {
-                    history.push("/mindmate");
-                    setMindmate(response.data.user);
-                    setCookie("token", response.data.jwtToken);
-                  } else {
-                    toast.error(response.data);
-                  }
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-            }
-          }}
-          className="border py-0.5 px-5 mt-4 rounded-md text-lg font-medium bg-gradient-to-r from-lightGreen to-darkGreen text-white"
-        >
-          Sign In
-        </button>
       </div>
     </div>
   );
