@@ -11,14 +11,14 @@ export default function Navbar() {
     { id: 4, title: "About Us", url: "" },
   ];
   return (
-    <nav className="flex justify-evenly bg-background">
+    <nav className="flex justify-around bg-background">
       <div className="logo">
         <Image
-          src='/logos/logo.svg'
+          src="/logos/logo.svg"
           alt="card"
           height={100}
           width={100}
-          className="h-auto w-auto rounded-[100%]"
+          className="h-auto w-auto "
         />
       </div>
       <div className="flex gap-5 items-center text-grey">
@@ -31,7 +31,7 @@ export default function Navbar() {
         })}
       </div>
       <div className="flex gap-4">
-        <Button text={"Explore"} />
+        <Button text={"Explore"} classNames={""} />
       </div>
     </nav>
   );
