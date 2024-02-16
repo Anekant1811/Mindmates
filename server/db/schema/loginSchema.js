@@ -9,6 +9,12 @@ const loginSchema = new mongoose.Schema({
   name: String,
   profile: String,
   mindmates: Array,
+  questionnaire: {
+    age: String,
+    problem: String,
+    answers: Array,
+    backendAnswers: Array,
+  },
 });
 
 const User = mongoose.model("Users", loginSchema);

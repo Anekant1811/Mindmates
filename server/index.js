@@ -22,19 +22,15 @@ app.use(express.json());
 app.use(
   cors({
     origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
+    methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
 );
 app.use(
   session({
     secret: process.env.CLIENT_SECRET_ID,
-    resave: false,
+    resave: true,
     saveUninitialized: true,
-    cookie: {
-      secure: true, // Set to true in production
-      sameSite: "None",
-    },
   })
 );
 app.use(passport.initialize());
@@ -87,25 +83,20 @@ app.get(
 app.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: `http://localhost:3000`,
+    successRedirect: `http://localhost:3000/dashboard`,
     failureRedirect: `http://localhost:3000`,
   })
 );
 
 app.get("/login/sucess", async (req, res) => {
-  if (req.user) {
-    const jwtToken = jwt.sign(
-      {
-        user: req.user._id,
-      },
-      process.env.SECRET_KEY,
-      {
-        expiresIn: "1d",
-      }
-    );
-    res.status(200).json({ message: "user Login", user: req.user, jwtToken });
-  } else {
-    res.status(202).json({ message: "Not Authorized" });
+  try {
+    if (req.user) {
+      res.status(200).json({ message: "user Login", user: req.user });
+    } else {
+      res.status(202).json({ message: "Not Authorized" });
+    }
+  } catch (err) {
+    console.log(err);
   }
 });
 

@@ -56,7 +56,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="h-[2px] max-w-[100rem] bg-darkGreen mt-4 mb-5 mx-auto"></div>
+      <div className="h-[2px] max-w-[100rem] bg-gradient-to-r from-lightGreen via-darkGreen to-lightGreen mt-4 mb-5 mx-auto"></div>
       <div className="text-center">
         Copyright 2024 @mindmates all Right Reserved
       </div>

@@ -37,7 +37,7 @@ const Login = () => {
         <div>
           <div
             onClick={(e) => {
-              window.open(`${URL}/auth/google/callback`);
+              window.open(`${URL}auth/google/callback`, "_self");
             }}
             className="cursor-pointer border border-lightGreen rounded-md"
           >

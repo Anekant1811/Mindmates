@@ -9,7 +9,6 @@ import FaqsIndex from "./components/faqs/faqs-index";
 const page = () => {
   return (
     <div>
-      <div className="py-[2.5vw] bg-background"></div>
       <Hero />
       <ServicesIndex />
       <MentorIndex />
