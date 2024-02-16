@@ -29,18 +29,23 @@ export default function MentorIndex() {
   const [activeCard, setActiveCard] = useState(2);
 
   return (
-    <section className="bg-gradient-to-tr from-[#d5e9f5] to-[#d4f5f5] p-12">
-      <div className="sm:flex gap-2 w-4/5 justify-center mx-auto">
-        {mentorCardsData?.map((cardData) => {
-          return (
-            <MenotrCard
-              key={cardData?.id}
-              activeCard={activeCard}
-              setActiveCard={setActiveCard}
-              cardData={cardData}
-            />
-          );
-        })}
+    <section className="py-8">
+      <h2 className="text-3xl md:text-4xl font-bold text-center my-4">
+        Our <span className="text-gradient-01"> Mind Mates</span>{" "}
+      </h2>{" "}
+      <div className=" w-full  bg-gradient-to-tr from-[#d5e9f5] to-[#d4f5f5]">
+        <div className="w-4/5 sm:flex gap-2 justify-center mx-auto">
+          {mentorCardsData?.map((cardData) => {
+            return (
+              <MenotrCard
+                key={cardData?.id}
+                activeCard={activeCard}
+                setActiveCard={setActiveCard}
+                cardData={cardData}
+              />
+            );
+          })}
+        </div>
       </div>
     </section>
   );

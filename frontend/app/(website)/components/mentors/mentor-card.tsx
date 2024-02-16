@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import cx from "classNames";
+import Button from "../common/Button";
 export default function MenotrCard({
   activeCard,
   setActiveCard,
@@ -47,6 +48,7 @@ export default function MenotrCard({
       >
         {cardData?.desc}
       </p>
+      <Button text={"Get Started"} classNames={""} />
     </div>
   );
 }

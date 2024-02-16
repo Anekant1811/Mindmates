@@ -16,7 +16,7 @@ export default function Hero() {
             adipiscing fringilla nulla diam lorem non mauris. Ultrices aliquet
             at quam. are ready to help you lorem non mauris. Ultrices
           </p>
-          <Button text={"Get Started"} />
+          <Button text={"Get Started"} classNames={""} />
         </div>
         <div className="bg-[#D5E9F5] h-auto w-1/2 rounded-tl-[4rem] py-24"></div>
       </div>
