@@ -6,6 +6,7 @@ const nextConfig = {
       "res.cloudinary.com",
       "files.slack.com",
       "www.outsystems.com",
+      "lh3.googleusercontent.com",
     ],
   },
 };

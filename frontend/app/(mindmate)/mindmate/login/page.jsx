@@ -1,12 +1,12 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
 import BASE_URL from "../../../url/index";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { setCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import Context from "../../../../context/Context";
 import Image from "next/image";
 import bg from "../../../Assets/positive-login.png";
@@ -16,6 +16,12 @@ const Mindmate = () => {
   const [showPassword, setShowPassword] = useState(false);
   const history = useRouter();
   const { setMindmate } = useContext(Context);
+
+  useEffect(() => {
+    if (getCookie("token")) {
+      history.push("/mindmate");
+    }
+  }, []);
 
   return (
     <div className="flex items-center justify-center w-full text-gray h-[100vh]">
