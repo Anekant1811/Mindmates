@@ -1,8 +1,11 @@
 "use client";
 import CryptoJS from "crypto-js";
 import Context from "./Context";
+import { useState } from "react";
 
 const State = (props) => {
+  const [mindmate, setMindmate] = useState();
+
   const dcrpyt = (text) => {
     var bytes = CryptoJS.AES.decrypt(text, "MINDMATES");
     var originalText = bytes.toString(CryptoJS.enc.Utf8);
@@ -10,7 +13,9 @@ const State = (props) => {
   };
 
   return (
-    <Context.Provider value={{ dcrpyt }}>{props.children}</Context.Provider>
+    <Context.Provider value={{ dcrpyt, mindmate, setMindmate }}>
+      {props.children}
+    </Context.Provider>
   );
 };
 
