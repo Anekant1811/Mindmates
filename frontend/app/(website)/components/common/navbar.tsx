@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Button from "./Button";
+import Image from "next/image";
 
 export default function Navbar() {
   const navLinks = [
@@ -11,7 +12,15 @@ export default function Navbar() {
   ];
   return (
     <nav className="flex justify-evenly bg-background">
-      <div className="logo"></div>
+      <div className="logo">
+        <Image
+          src='/logos/logo.svg'
+          alt="card"
+          height={100}
+          width={100}
+          className="h-auto w-auto rounded-[100%]"
+        />
+      </div>
       <div className="flex gap-5 items-center text-grey">
         {navLinks?.map((item) => {
           return (
