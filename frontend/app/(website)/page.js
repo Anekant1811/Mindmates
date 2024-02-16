@@ -6,6 +6,7 @@ import AboutUsIndex from "./components/about-us/about-index";
 import CommunityIndex from "./components/community-posts/community-index";
 import FindMates from "./components/find-mates";
 import FaqsIndex from "./components/faqs/faqs-index";
+
 const page = () => {
   return (
     <div>
