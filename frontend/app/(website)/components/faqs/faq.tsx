@@ -11,7 +11,7 @@ export default function FAQ() {
       <div className="bg-[#D5EAF5] p-3 rounded-xl text-xs sm:text-base">
         <div className="flex sm:gap-6 justify-between items-center line-clamp-2">
           <h2>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+            Lorem ipsumonsectetur, adipisicing elit.
             Perspiciatis
           </h2>
           {faqOpen ? <FaCaretUp /> : <FaCaretDown />}
