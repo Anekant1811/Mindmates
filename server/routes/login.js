@@ -51,7 +51,7 @@ login.get(
 login.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: `${process.env.BASE_URL}/user/dashboard`,
+    successRedirect: `${process.env.BASE_URL}/`,
     failureRedirect: `${process.env.BASE_URL}/`,
   })
 );

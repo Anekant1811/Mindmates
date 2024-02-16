@@ -1,17 +1,23 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import Button from "./Button";
 import Image from "next/image";
+import Context from "../../../../context/Context";
+import Login from "../common/Login";
 
 export default function Navbar() {
+  const { setShowLogin } = useContext(Context);
   const navLinks = [
     { id: 1, title: "Home", url: "" },
     { id: 2, title: "Service", url: "" },
     { id: 3, title: "Contact", url: "" },
     { id: 4, title: "About Us", url: "" },
   ];
+
   return (
     <nav className="flex justify-around bg-background py-3 fixed w-full top-0 left-0">
+      <Login />
       <div className="logo">
         <Image
           src="/logos/logo.svg"
@@ -31,7 +37,16 @@ export default function Navbar() {
         })}
       </div>
       <div className="flex gap-4">
-        <Button text={"Explore"} classNames={""} />
+        <button
+          className={
+            "bg-gradient-to-r text-white from-[#4ED6DA] to-[#04789D] text-center h-fit py-1 my-1 px-5 rounded-3xl"
+          }
+          onClick={(e) => {
+            setShowLogin(true);
+          }}
+        >
+          Explore
+        </button>
       </div>
     </nav>
   );

@@ -4,6 +4,7 @@ import Context from "./Context";
 import { useState } from "react";
 
 const State = (props) => {
+  const [showLogin, setShowLogin] = useState(false);
   const [mindmate, setMindmate] = useState();
 
   const dcrpyt = (text) => {
@@ -13,7 +14,9 @@ const State = (props) => {
   };
 
   return (
-    <Context.Provider value={{ dcrpyt, mindmate, setMindmate }}>
+    <Context.Provider
+      value={{ dcrpyt, mindmate, setMindmate, showLogin, setShowLogin }}
+    >
       {props.children}
     </Context.Provider>
   );
