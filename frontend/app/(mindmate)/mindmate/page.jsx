@@ -4,8 +4,8 @@ import Navbar from "../Components/Navbar";
 import Image from "next/image";
 
 import { AiOutlineBell, AiOutlineEye } from "react-icons/ai";
-
-// import EditMindmate from "./EditMindmate";
+import bg from "../../Assets/bg.jpg";
+import EditMindmate from "./EditMindmate";
 import axios from "axios";
 import BASE_URL from "../../url";
 import { getCookie } from "cookies-next";
@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import Context from "../../../context/Context";
 
 const Trubuddy = () => {
+  const [showEdit, setShowEdit] = useState(false);
   const { mindmate, setMindmate } = useContext(Context);
   const history = useRouter();
 
@@ -30,18 +31,17 @@ const Trubuddy = () => {
   return (
     <div>
       <Navbar />
+      <EditMindmate showEdit={showEdit} setShowEdit={setShowEdit} />
       <div className="absolute top-0 left-0 z-0">
         <Image
-          src={
-            "https://plus.unsplash.com/premium_photo-1673306778968-5aab577a7365?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          }
+          src={bg}
           width={10000}
           height={10000}
           alt="Bg"
-          className="h-[20vh] md:h-[35vh] object-cover object-center"
+          className="h-[20vh] md:h-[45vh] object-cover object-center"
         />
       </div>
-      <div className="absolute z-10 bg-white w-[85vw] md:w-[70vw] h-[85vh] md:h-[75vh] flex flex-col items-center rounded-lg bottom-0 left-1/2 -translate-x-1/2 shadow-xl shadow-gray-500">
+      <div className="absolute z-10 bg-white w-[85vw] md:w-[70vw] h-[85vh] md:h-[60vh] flex flex-col items-center rounded-lg bottom-0 left-1/2 -translate-x-1/2 shadow-xl shadow-gray-500">
         <div className="flex items-start justify-between p-2 md:p-4 w-full">
           <div className="flex items-center">
             <AiOutlineEye
@@ -68,7 +68,12 @@ const Trubuddy = () => {
             <div className="w-full bg-gray-300 my-2 h-[1px]"></div>
           </div>
           <div>
-            <button className="text-white bg-gradient-to-r from-lightGreen to-darkGreen px-5 py-1 rounded-md font-medium">
+            <button
+              onClick={(e) => {
+                setShowEdit(!showEdit);
+              }}
+              className="text-white bg-gradient-to-r from-lightGreen to-darkGreen px-5 py-1 rounded-md font-medium"
+            >
               Edit Profile
             </button>
           </div>

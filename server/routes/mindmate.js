@@ -51,11 +51,20 @@ mindmate.post("/get", validateToken, async (req, res) => {
 
 mindmate.post("/update", validateToken, async (req, res) => {
   const { id } = req;
-  const { email, password, name } = req.body;
+  const {
+    email,
+    password,
+    name,
+    bio,
+    expertise,
+    address,
+    anonymous,
+    meeting_url,
+  } = req.body;
 
   const response = await Mindmate.updateOne(
     { _id: id },
-    { email, password, name }
+    { email, password, name, bio, expertise, address, anonymous, meeting_url }
   );
   res.send(response);
 });

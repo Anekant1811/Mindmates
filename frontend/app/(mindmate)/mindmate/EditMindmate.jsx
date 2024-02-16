@@ -2,13 +2,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import Modal from "react-modal";
 
-import Context from "../../Context/Context";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
-import { BASE_URL } from "../../(website)/Components/Utils/url";
 import { getCookie } from "cookies-next";
-import { maliFont, noto_sans } from "../../(website)/Components/Utils/font";
 import { AiOutlineClose } from "react-icons/ai";
+import Context from "../../../context/Context";
+import BASE_URL from "../../url";
 
 const customStyles = {
   overlay: {
@@ -25,22 +24,15 @@ const customStyles = {
   },
 };
 
-const EditMindmate = () => {
-  const { setShowTrubuddyEdit, showTrubuddyEdit, trubuddy, getTrubuddyLogin } =
-    useContext(Context);
+const EditMindmate = ({ showEdit, setShowEdit }) => {
+  const { mindmate } = useContext(Context);
   const [page, setPage] = useState(1);
   const [user, setUser] = useState({
     name: "",
     email: "",
     bio: "",
     expertise: "",
-    city: "",
-    state: "",
-    availability: "",
-    gender: "",
-    languages: [],
-    otherExpertise: [],
-    personality: [],
+    address: "",
     anonymous: "",
     meeting_url: "",
   });
@@ -50,32 +42,26 @@ const EditMindmate = () => {
 
   useEffect(() => {
     setUser({
-      name: trubuddy?.name,
-      email: trubuddy?.email,
-      anonymous: trubuddy?.anonymous,
-      city: trubuddy?.city,
-      state: trubuddy?.state,
-      gender: trubuddy?.gender,
-      availability: trubuddy?.availability,
-      profile: trubuddy?.profile,
-      languages: trubuddy?.languages,
-      otherExpertise: trubuddy?.otherExpertise,
-      personality: trubuddy?.personality,
-      bio: trubuddy?.bio,
-      meeting_url: trubuddy?.meeting_url,
+      name: mindmate?.name,
+      email: mindmate?.email,
+      bio: mindmate?.bio,
+      anonymous: mindmate?.anonymous,
+      profile: mindmate?.profile,
+      expertise: mindmate?.expertise,
+      meeting_url: mindmate?.meeting_url,
     });
-  }, [trubuddy]);
+  }, [mindmate]);
 
   const onSubmit = () => {
     axios
-      .post(`${BASE_URL}/trubuddy/update`, {
+      .post(`${BASE_URL}/mindmate/update`, {
         ...user,
-        token: getCookie("trubuddy_token"),
+        token: getCookie("mindmate_token"),
       })
       .then((res) => {
         if (res.status == 200) {
-          getTrubuddyLogin();
-          setShowTrubuddyEdit(false);
+          getmindmateLogin();
+          setShowmindmateEdit(false);
           toast.success("Updated successfully");
         }
       })
@@ -102,18 +88,16 @@ const EditMindmate = () => {
   };
 
   return (
-    <div className={`${noto_sans.className}`}>
+    <div>
       <Toaster />
       <Modal
-        isOpen={showTrubuddyEdit}
+        isOpen={showEdit}
         onRequestClose={() => {
-          setShowTrubuddyEdit(false);
+          setShowEdit(false);
         }}
         style={customStyles}
       >
-        <div
-          className={`completeBg ${noto_sans.className} w-[80vw] md:w-[35vw] flex flex-col items-center`}
-        >
+        <div className={`w-[80vw] md:w-[35vw] flex flex-col items-center`}>
           <h1 className="text-2xl text-newBlue w-full md:text-center text-start font-bold">
             Complete your Profile
           </h1>
@@ -453,7 +437,9 @@ const EditMindmate = () => {
                     setPage(page - 1);
                   }}
                   className={`px-7 py-1.5 shadow-md shadow-gray-400 text-white mt-2 rounded-lg font-semibold ${
-                    page == 1 ? "bg-blue-200" : "bg-newBlue"
+                    page == 1
+                      ? "bg-lightGreen"
+                      : "bg-gradient-to-r from-lightGreen to-darkGreen"
                   }`}
                 >
                   Prev
@@ -462,7 +448,7 @@ const EditMindmate = () => {
                   onClick={(e) => {
                     setPage(page + 1);
                   }}
-                  className="bg-newBlue px-7 py-1.5 mr-3 shadow-md shadow-gray-400 text-white mt-2 rounded-lg font-semibold"
+                  className="bg-gradient-to-r from-lightGreen to-darkGreen px-7 py-1.5 mr-3 shadow-md shadow-gray-400 text-white mt-2 rounded-lg font-semibold"
                 >
                   Next
                 </button>
@@ -474,15 +460,17 @@ const EditMindmate = () => {
                   onClick={(e) => {
                     setPage(page - 1);
                   }}
-                  className={`px-7 py-1.5 shadow-md shadow-gray-400 text-white mt-2 rounded-lg font-semibold ${
-                    page == 1 ? "bg-blue-200" : "bg-newBlue"
+                  className={`px-7 py-1.5 shadow-md shadow-gray text-white mt-2 rounded-lg font-semibold ${
+                    page == 1
+                      ? "bg-blue-200"
+                      : "bg-gradient-to-r from-lightGreen to-darkGreen"
                   }`}
                 >
                   Prev
                 </button>
                 <button
                   onClick={onSubmit}
-                  className="bg-newBlue px-7 py-1.5 shadow-md shadow-gray-400 text-white mt-2 rounded-lg font-semibold"
+                  className="bg-gradient-to-r from-lightGreen to-darkGreen px-7 py-1.5 shadow-md shadow-gray text-white mt-2 rounded-lg font-semibold"
                 >
                   Submit
                 </button>
