@@ -28,7 +28,7 @@ export default function ServicesIndex() {
   return (
     <section className="py-16 mx-4 sm:mx-6 md:mx-auto md:w-4/5">
       <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold md:w-4/5 mx-auto text-center my-6">
-        Why our <span className="text-gradient-01"> Mental Health</span>
+        Why our <span className="text-gradient-01"> Mental Health </span>
         Consultants are the Best Choice
       </h1>
       <div className="cards sm:flex gap-2">

@@ -8,24 +8,26 @@ export default function MenotrCard({
   cardData,
   key,
 }) {
+  console.log( activeCard === cardData?.id)
   return (
+
     <div
       className={cx(
-        "rounded-2xl my-4 py-8 px-4 bg-background w-1/3 flex flex-col items-center",
+        "rounded-2xl my-8 py-8 px-4 h-auto bg-background w-1/3 flex flex-col items-center",
         {
-          "my-0": activeCard === cardData?.id,
+          "my-4": activeCard === cardData?.id,
         }
       )}
       key={key}
       onClick={() => setActiveCard(cardData?.id)}
     >
-      <div className="w-auto h-auto mt-8 rounded-[100%] bg-gradient-to-r from-lightGreen to-darkGreen p-1">
+      <div className="w-auto h-auto mt-8 rounded-[100%] bg-gradient-to-r from-lightGreen to-darkGreen p-[2px]">
         <Image
           src={cardData?.avatarUrl}
           alt="card"
           height={100}
           width={100}
-          className="h-full w-full rounded-[100%]"
+          className="h-full w-24 rounded-[100%]"
         />
       </div>
       <h2 className="text-xl font-semibold text-center">{cardData?.title}</h2>
