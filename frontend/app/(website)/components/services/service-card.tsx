@@ -7,11 +7,10 @@ export default function ServiceCard({
   setActiveCard,
   activeCard,
 }) {
-  console.log(activeCard);
   return (
     <div
       className={cx(
-        "rounded-2xl py-8 px-4 bg-background sm:w-1/3 flex flex-col items-center",
+        "rounded-2xl py-8 px-4 bg-background sm:w-1/3 flex flex-col items-center cursor-pointer transition-all",
         {
           "bg-gradient-to-br from-lightGreen to-darkGreen text-white":
             activeCard === cardData?.id,
@@ -26,12 +25,14 @@ export default function ServiceCard({
           alt="card"
           height={100}
           width={100}
-          className="h-auto w-auto rounded-[100%]"
+          className="h-auto w-auto object-cover object-center rounded-[100%]"
         />
       </div>
-      <h2 className="text-xl text-bold text-center py-4">{cardData?.title}</h2>
+      <h2 className="text-2xl text-bold text-center pt-4 pb-2 font-semibold">
+        {cardData?.title}
+      </h2>
       <p
-        className={cx("text-center text-sm", {
+        className={cx("text-center text-base", {
           "text-[#172048]": activeCard !== cardData?.id,
         })}
       >

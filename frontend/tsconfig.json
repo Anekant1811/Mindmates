@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "app/(website)/components/hero.jsx", "app/(mindmate)/mindmate/layout.jsx", "app/(website)/components/common/Login.jsx"  ],
+, "app/(website)/components/hero.jsx", "app/(mindmate)/mindmate/layout.jsx", "app/(website)/components/common/Login.tsx"  ],
   "exclude": [
     "node_modules"
   ]

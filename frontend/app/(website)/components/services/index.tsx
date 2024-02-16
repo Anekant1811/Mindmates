@@ -25,13 +25,18 @@ export default function ServicesIndex() {
     },
   ];
   const [activeCard, setActiveCard] = useState(2);
+
   return (
     <section className="py-16 mx-4 sm:mx-6 md:mx-auto md:w-4/5">
-      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold md:w-4/5 mx-auto text-center my-6">
+      <h1
+        className="text-2xl sm:text-3xl lg:text-4xl pb-5 font-bold md:w-4/5 mx-auto text-center my-6"
+        style={{ lineHeight: "3.1vw" }}
+      >
         Why our <span className="text-gradient-01"> Mental Health </span>
-        Consultants are the Best Choice
+        Consultants are <br />
+        the Best Choice
       </h1>
-      <div className="cards sm:flex gap-2">
+      <div className="cards sm:flex gap-y-3 gap-x-10">
         {ServiceCardData?.map((cardData) => {
           return (
             <ServiceCard

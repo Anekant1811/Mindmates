@@ -4,19 +4,19 @@ import ServicesIndex from "./components/services/index";
 import MentorIndex from "./components/mentors/mentor-index";
 import AboutUsIndex from "./components/about-us/about-index";
 import CommunityIndex from "./components/community-posts/community-index";
-import FindMates from './components/find-mates'
-import FaqsIndex from './components/faqs/faqs-index'
+import FindMates from "./components/find-mates";
+import FaqsIndex from "./components/faqs/faqs-index";
 const page = () => {
   return (
     <div>
-      <div className="py-[5vw] bg-background"></div>
+      <div className="py-[2.5vw] bg-background"></div>
       <Hero />
       <ServicesIndex />
       <MentorIndex />
       <AboutUsIndex />
       <CommunityIndex />
-      <FindMates/>
-      <FaqsIndex/>
+      <FindMates />
+      <FaqsIndex />
     </div>
   );
 };
