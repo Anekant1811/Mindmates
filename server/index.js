@@ -3,16 +3,16 @@ const express = require("express");
 const cors = require("cors");
 const session = require("express-session");
 const passport = require("passport");
-const http = require("http");
-var CryptoJS = require("crypto-js");
 
 const login = require("./routes/login");
 const mindmate = require("./routes/mindmate");
 const connectToDb = require("./db/conn");
 const Message = require("./db/schema/messageSchema");
+const posts = require("./routes/posts");
 const OAuth2Strategy = require("passport-google-oauth2").Strategy;
 const User = require("./db/schema/loginSchema");
 const app = express();
+const meeting = require("./routes/meeting");
 
 // Must things
 connectToDb();
@@ -83,7 +83,7 @@ app.get(
 app.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: `http://localhost:3000/dashboard`,
+    successRedirect: `http://localhost:3000/`,
     failureRedirect: `http://localhost:3000`,
   })
 );
@@ -111,7 +111,9 @@ app.get("/logout", (req, res, next) => {
 
 // Paths
 app.use("/api/login", login);
+app.use("/api/posts", posts);
 app.use("/api/mindmate", mindmate);
+app.use("/api/meeting", meeting);
 
 // Listening to the port
 app.listen(5000, () => {

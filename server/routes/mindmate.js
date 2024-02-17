@@ -127,12 +127,16 @@ mindmate.get("/get-all", async (req, res) => {
 
 mindmate.post("/mates/:mindmate/:user_id", async (req, res) => {
   const { mindmate, user_id } = req.params;
-
+  console.log(mindmate, user_id);
   Mindmate.updateOne({ _id: mindmate }, { $push: { mates: user_id } })
-    .then((resp) => {
+    .then(async (resp) => {
+      console.log(resp);
+      let data = await User.findOne({ _id: user_id });
+      console.log(data);
       if (resp.modifiedCount == 1) {
         User.updateOne({ _id: user_id }, { $push: { mindmates: mindmate } })
           .then((response) => {
+            console.log(response);
             res.send(response);
           })
           .catch((err) => {
