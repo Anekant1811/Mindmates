@@ -22,7 +22,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="flex px-[7vw] justify-between bg-background z-50 py-3 fixed w-full top-0 left-0">
+      <nav className="flex px-[7vw] z-30 justify-between bg-background py-3 fixed w-full top-0 left-0">
         <div className="absolute">
           <Login />
         </div>
@@ -42,7 +42,11 @@ export default function Navbar() {
           {navLinks?.map((item) => {
             return (
               <div key={item?.id} className="p transition-all hover:scale-105">
+<<<<<<< HEAD
                 <Link href={item?.url} className="mr-5 font-semibold">
+=======
+                <Link href={item?.url} className="mr-5">
+>>>>>>> 95cc994e48ba31c35f645d020dde938ce27144e7
                   {item?.title}
                 </Link>
               </div>

@@ -41,7 +41,8 @@ export default function MentorIndex() {
                 key={cardData?.id}
                 activeCard={activeCard}
                 setActiveCard={setActiveCard}
-                cardData={cardData}
+                cardData={cardData} 
+                
               />
             );
           })}

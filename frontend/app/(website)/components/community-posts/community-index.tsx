@@ -9,9 +9,8 @@ export default function CommunityIndex() {
         className="text-3xl sm:text-4xl md:text-5xl my-5 font-bold text-center"
         style={{ lineHeight: "3.9vw" }}
       >
-        Community{" "}
+        <span> Community </span>
         <span className="text-gradient-01">
-          {" "}
           Anonymous <br />
           Posts
         </span>
