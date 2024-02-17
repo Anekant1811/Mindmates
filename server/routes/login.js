@@ -117,4 +117,18 @@ login.post("/update-questionnaire", async (req, res) => {
     });
 });
 
+login.post("/update", async (req, res) => {
+  const { id } = req.body;
+  const { anonymous, profile } = req.body;
+
+  const response = await User.updateOne(
+    { _id: id },
+    {
+      profile,
+      anonymous,
+    }
+  );
+  res.send(response);
+});
+
 module.exports = login;

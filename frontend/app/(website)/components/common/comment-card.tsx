@@ -1,12 +1,12 @@
 import Image from "next/image";
 import React from "react";
 
-export default function CommentCard() {
+export default function CommentCard({ data }) {
   return (
-    <div className="flex py-4 border-0 border-b border-darkGreen sm:gap-8 gap-4">
+    <div className="flex py-2 mx-2 border-0 border-b border-darkGreen sm:gap-8 gap-4">
       <div className="rounded-full">
         <Image
-          src="/images/doctor-avatar.svg"
+          src={data?.user?.profile}
           alt="card"
           height={100}
           width={100}
@@ -14,8 +14,8 @@ export default function CommentCard() {
         />
       </div>
       <div className="font-semibold">
-        <h4 className="text-lg">User Name</h4>
-        <p className="text-darkGreen text-xs py-2">User Comment Here</p>
+        <h4 className="text-lg">{data?.user?.anonymous}</h4>
+        <p className="text-darkGreen text-xs">{data?.text}</p>
       </div>
     </div>
   );

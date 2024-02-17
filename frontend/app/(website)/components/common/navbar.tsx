@@ -74,7 +74,7 @@ export default function Navbar() {
                 className="md:w-[3.5vw] border border-lightGreen w-[8vw] h-[8vw] md:h-[3.5vw] rounded-full cursor-pointer"
               />
               {showLogout && (
-                <div className="absolute right-2 top-[4vw] bg-white px-2 rounded-md border border-lightGreen">
+                <div className="absolute right-0 md:right-2 top-[9vw] md:text-base text-xs md:top-[4vw] bg-white px-2 rounded-md border border-lightGreen">
                   <p
                     className="px-7 shadow-sm shadow-[#999] my-2 py-1 cursor-pointer rounded-md"
                     onClick={(e) => {
@@ -100,7 +100,7 @@ export default function Navbar() {
           )}
         </div>
       </nav>
-      <div className="py-[3.5vw] md:py-[2.5vw]"></div>
+      <div className="py-[4vw] bg-background md:py-[2.5vw]"></div>
     </>
   );
 }

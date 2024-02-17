@@ -56,7 +56,7 @@ export default function ServicesIndex() {
       />
       <h1
         className="text-3xl sm:text-3xl lg:text-4xl pb-0 md:pb-5 font-bold md:w-4/5 mx-auto text-center my-6"
-        style={width < 600 ? { lineHeight: "7.5vw" } : { lineHeight: "3.1vw" }}
+        style={width < 600 ? { lineHeight: "8vw" } : { lineHeight: "3.1vw" }}
       >
         Why our <span className="text-gradient-01"> Mental Health </span>
         Consultants are <br />

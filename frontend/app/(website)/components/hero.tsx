@@ -17,7 +17,7 @@ export default function Hero() {
           <h1
             className="sm:text-start text-3xl sm:text-3xl lg:text-5xl font-bold"
             style={
-              width < 600 ? { lineHeight: "8.5vw" } : { lineHeight: "3.8vw" }
+              width < 600 ? { lineHeight: "9vw" } : { lineHeight: "3.8vw" }
             }
           >
             <span>

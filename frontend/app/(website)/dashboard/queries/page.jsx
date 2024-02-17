@@ -10,11 +10,13 @@ export default function Queries() {
   const history = useRouter();
 
   return (
-    <div className="flex bg-white px-[9vw]">
+    <div className="flex md:flex-row flex-col bg-white px-[9vw]">
       <UserMenu></UserMenu>
-      <main className="sm:w-[75vw]">
-        <div className="my-12 w-auto px-8">
-          <h3 className="text-2xl font-semibold">Hello {user?.name},</h3>
+      <main className="md:w-[75vw]">
+        <div className="my-12 w-auto md:px-8">
+          <h3 className="text-2xl font-semibold">
+            Hello {user?.anonymous ? user?.anonymous : user?.name},
+          </h3>
           <div className="bg-gradient-to-br h-[40vh] w-auto from-lightGreen to-darkGreen p-[1px] rounded-xl mt-4">
             <div className="p-4 flex flex-col h-full w-full gap-4 bg-white rounded-xl">
               <h2 className="text-gray font-medium text-xl">Queries</h2>

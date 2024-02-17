@@ -8,9 +8,12 @@ export default function MentorsList() {
   const [activeCard, setActiveCard] = useState(2);
 
   return (
-    <section id="mentors-list" className="md:w-4/5 mx-auto py-6 pt-16">
+    <section
+      id="mentors-list"
+      className="md:w-4/5 md:mx-auto mx-[5vw] py-6 pt-16"
+    >
       <h2
-        className="text-3xl sm:text-4xl md:text-5xl font-bold text-center"
+        className="text-3xl sm:text-4xl md:mb-0 mb-3 md:text-5xl font-bold text-center"
         style={{ lineHeight: "3.9vw" }}
       >
         Our

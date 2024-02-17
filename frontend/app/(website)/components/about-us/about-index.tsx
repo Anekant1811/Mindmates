@@ -2,7 +2,6 @@
 import Image from "next/image";
 import React, { useContext } from "react";
 import bg from "../../../Assets/elements/Group 9.png";
-import bg1 from "../../../Assets/elements/Group 8 (1).png";
 import { useRouter } from "next/navigation";
 import Context from "../../../../context/Context";
 
@@ -16,11 +15,6 @@ export default function AboutUsIndex() {
         src={bg}
         alt="bg"
         className="absolute md:block hidden -top-[2vw] left-0"
-      />
-      <Image
-        src={bg1}
-        alt="bg"
-        className="absolute md:block hidden -top-[5vw] right-0"
       />
       <h3 className="text-center text-3xl font-semibold mb-10">About Us</h3>
       <div className="flex flex-col sm:flex-row my-6 w-4/5 mx-auto items-center gap-5">
@@ -37,7 +31,7 @@ export default function AboutUsIndex() {
           <h2
             className="text-3xl md:text-4xl font-bold"
             style={
-              width < 600 ? { lineHeight: "7.7vw" } : { lineHeight: "3.5vw" }
+              width < 600 ? { lineHeight: "8vw" } : { lineHeight: "3.5vw" }
             }
           >
             Discover the Faces Behind
