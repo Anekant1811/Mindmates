@@ -50,16 +50,14 @@ export default function MentorsList() {
   const [activeCard, setActiveCard] = useState(2);
 
   return (
-    <section className="md:w-4/5 mx-auto my-6">
+    <section id="mentors-list" className="md:w-4/5 mx-auto py-6 pt-16">
       <h2
         className="text-3xl sm:text-4xl md:text-5xl font-bold text-center"
         style={{ lineHeight: "3.9vw" }}
       >
-        Community
+        <span>Our </span>
         <span className="text-gradient-01">
-          <span> Anonymous </span>
-          <br />
-          Posts
+          Renowned <br /> Consultants
         </span>
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 h-[90vh] overflow-y-auto">

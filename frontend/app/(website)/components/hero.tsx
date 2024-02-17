@@ -1,9 +1,6 @@
 "use client";
 import { useContext } from "react";
-// import Lottie from "lottie-react";
-// import Lottie from "react-lottie";
 import Lottie from "react-lottie-player";
-
 import Context from "../../../context/Context";
 import heroIllu from "../../../public/images/hero-illus.json";
 export default function Hero() {
@@ -52,11 +49,7 @@ export default function Hero() {
               loop
               animationData={heroIllu}
               play
-              style={{ width: "auto", height: 'auto' }}
-
-              // className="h-auto w-full sm:pt-5 ml-auto self-end"
-              // width="100%" // Specify width
-              // height="auto"
+              style={{ width: "auto", height: "auto" }}
             />
           </div>
         </div>

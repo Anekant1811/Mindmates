@@ -13,6 +13,7 @@ export default function ServicesIndex() {
       avatarUrl: "/images/doctor-avatar.svg",
       title: "Chat with doctor",
       desc: "You can connect directly, quickly and easily, and there is no need to doubt the quality of the consultation and treatment offered.",
+      redirectUrl:"/services/#mentors-list"
     },
     {
       id: 2,

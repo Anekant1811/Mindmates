@@ -1,12 +1,16 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import cx from "classNames";
+import { useRouter } from "next/navigation";
+// import useRouter  from "next/router";
 export default function ServiceCard({
   key,
   cardData,
   setActiveCard,
   activeCard,
 }) {
+  const router = useRouter();
   return (
     <div
       className={cx(
@@ -17,7 +21,11 @@ export default function ServiceCard({
         }
       )}
       key={key}
-      onClick={() => setActiveCard(cardData?.id)}
+      onClick={() => {
+        setActiveCard(cardData?.id);
+        cardData?.redirectUrl !== undefined &&
+          router.push(`${cardData?.redirectUrl}`);
+      }}
     >
       <div className="w-auto h-auto mt-8">
         <Image
