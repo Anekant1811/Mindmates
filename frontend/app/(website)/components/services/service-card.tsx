@@ -2,8 +2,9 @@
 import Image from "next/image";
 import React from "react";
 import cx from "classNames";
+import identity from "/public/images/anonymous-identity.json";
+import Lottie from "react-lottie-player";
 import { useRouter } from "next/navigation";
-// import useRouter  from "next/router";
 export default function ServiceCard({
   key,
   cardData,
@@ -32,13 +33,25 @@ export default function ServiceCard({
       }}
     >
       <div className="w-auto h-auto mt-8">
-        <Image
-          src={cardData?.avatarUrl}
-          alt="card"
-          height={100}
-          width={100}
-          className="h-auto w-auto object-cover object-center rounded-[100%]"
-        />
+        {cardData?.id === 2 ? (
+          <div className="w-full mx-auto block">
+            <Lottie
+              loop
+              animationData={identity}
+              play
+              className="mx-auto"
+              style={{ width: "50%", height: "auto" }}
+            />
+          </div>
+        ) : (
+          <Image
+            src={cardData?.avatarUrl}
+            alt="card"
+            height={100}
+            width={100}
+            className="h-auto w-auto object-cover object-center rounded-[100%]"
+          />
+        )}
       </div>
       <h2 className="text-2xl text-bold text-center pt-4 pb-2 font-semibold">
         {cardData?.title}

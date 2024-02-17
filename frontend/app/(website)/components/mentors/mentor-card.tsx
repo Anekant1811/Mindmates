@@ -51,7 +51,7 @@ export default function MentorCard({
           {data?.availability}
         </p>
       )}
-      <div className="md:w-[8vw] w-[35vw] h-[35vw] md:h-[8vw] mt-8 rounded-[100%] bg-gradient-to-r from-lightGreen to-darkGreen p-1">
+      <div className="sm:w-[8vw] w-[35vw] h-[35vw]  sm:h-[8vw] mt-8 rounded-[100%] bg-gradient-to-r from-lightGreen to-darkGreen p-1">
         <Image
           src={data?.profile}
           alt="card"
@@ -63,12 +63,12 @@ export default function MentorCard({
       <h2 className="text-2xl font-semibold text-center mt-2">
         {cardData?.anonymous}
       </h2>
-      <div className="flex gap-2 mt-2 mb-2">
+      <div className="flex sm:flex-wrap lg:flex-nowrap justify-center gap-2 mt-2 mb-2">
         {cardData?.expertise?.map((i) => {
           return (
             <div
               key={i}
-              className="text-sm px-5 py-0.5 rounded-3xl border-[#1720488a] border"
+              className="text-sm sm:text-xs lg:text-sm px-5 py-0.5 rounded-3xl border-[#1720488a] border"
             >
               {i}
             </div>
