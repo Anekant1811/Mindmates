@@ -25,7 +25,7 @@ const Login = () => {
   const { showLogin, setShowLogin } = useContext(Context);
 
   return (
-    <div>
+    <div className={""}>
       <Toaster />
       <Modal
         isOpen={showLogin}
@@ -35,20 +35,26 @@ const Login = () => {
         style={customStyles}
       >
         <div>
+          <Image
+            src={"/logos/logo.svg"}
+            alt="Google login"
+            width={1000}
+            height={1000}
+            className="w-full h-full rounded-md"
+          />
           <div
             onClick={(e) => {
               window.open(`${URL}auth/google/callback`, "_self");
             }}
             className="cursor-pointer border border-lightGreen rounded-md"
           >
+            {" "}
             <Image
-              src={
-                "https://www.outsystems.com/forge/DownloadResource.aspx?FileName=&ImageBinaryId=43951"
-              }
+              src={"/images/sign-in-with-google.png"}
               alt="Google login"
-              className="w-[3vw] rounded-md"
-              width={1000}
-              height={1000}
+              width={200}
+              height={200}
+              className="w-auto h-auto rounded-md"
             />
           </div>
         </div>

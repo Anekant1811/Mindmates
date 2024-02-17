@@ -12,11 +12,12 @@ export default function Navbar() {
   const history = useRouter();
   const [showLogout, setShowLogout] = useState(false);
   const { setShowLogin, user } = useContext(Context);
+  const router = useRouter();
   const navLinks = [
-    { id: 1, title: "Home", url: "" },
-    { id: 2, title: "Service", url: "" },
+    { id: 1, title: "Home", url: "/" },
+    { id: 2, title: "Service", url: "#services" },
     { id: 3, title: "Contact", url: "" },
-    { id: 4, title: "About Us", url: "" },
+    { id: 4, title: "About Us", url: "#about-us" },
   ];
 
   return (
@@ -41,7 +42,10 @@ export default function Navbar() {
           {navLinks?.map((item) => {
             return (
               <div key={item?.id} className="p transition-all hover:scale-105">
-                <Link href={item?.url} className="mr-5">
+                <Link
+                  href={item?.url}
+                  className="mr-5"
+                >
                   {item?.title}
                 </Link>
               </div>

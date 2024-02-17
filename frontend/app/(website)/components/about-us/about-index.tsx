@@ -4,7 +4,7 @@ import Button from "../common/Button";
 
 export default function AboutUsIndex() {
   return (
-    <section className="py-8">
+    <section id="about-us" className="py-8">
       <h3 className="text-center text-3xl font-semibold mb-10">About Us</h3>
       <div className="flex flex-col sm:flex-row my-6 w-4/5 mx-auto items-center gap-5">
         <div className="sm:w-2/5">
@@ -28,7 +28,7 @@ export default function AboutUsIndex() {
           </h2>
           <p className="text-lightGray pt-2 pb-4">
             Meet our compassionate Mates at MindMates. With expertise in various
-            fields, they're here to support you on your journey to mental
+            fields, they&apos;re here to support you on your journey to mental
             wellness.
           </p>
           <button
