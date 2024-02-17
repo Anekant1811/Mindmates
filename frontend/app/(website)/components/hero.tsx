@@ -1,9 +1,8 @@
 "use client";
-import React, { useContext } from "react";
-import Button from "./common/Button";
 import Image from "next/image";
+import { useContext } from "react";
 import Context from "../../../context/Context";
-
+import * as LottiePlayer from "@lottiefiles/lottie-player";
 export default function Hero() {
   const { setShowLogin } = useContext(Context);
 
@@ -43,13 +42,21 @@ export default function Hero() {
         </div>
         <div className="bg-[#D5E9F5] h-auto w-7/12 rounded-tl-[4rem] mx-auto">
           <div className="w-auto hidden sm:block">
-            <Image
+            {/* <Image
               src="/images/hero.gif"
               alt="card"
               height={100}
               width={100}
               className="h-full object-cover object-center w-full"
-            />
+            /> */}
+            {/* <lottie-LottiePlayer
+              autoplay
+              controls
+              loop
+              mode="normal"
+              src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
+              style="width: 320px"
+            ></lottie-player> */}
           </div>
         </div>
       </div>
