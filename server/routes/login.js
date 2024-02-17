@@ -108,7 +108,6 @@ login.post("/update-questionnaire", async (req, res) => {
   }
 
   let questionnaire = { age, problem, answers, backendAnswers };
-
   User.updateOne({ _id: id }, { questionnaire })
     .then((response) => {
       res.send(response);
