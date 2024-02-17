@@ -28,7 +28,7 @@ export default function Navbar() {
         </div>
         <div className="logo my-auto max-w-fit">
           <Image
-            src="/logos/logo.svg"
+            src="/logos/logo-svg.svg"
             alt="card"
             height={100}
             width={100}
@@ -59,7 +59,7 @@ export default function Navbar() {
                 setShowLogin(true);
               }}
             >
-              Register
+              Explore
             </button>
           ) : (
             <div className="relative">
