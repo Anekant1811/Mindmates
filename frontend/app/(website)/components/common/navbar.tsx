@@ -28,7 +28,7 @@ export default function Navbar() {
         </div>
         <div className="logo my-auto max-w-fit">
           <Image
-            src="/logos/logo-svg.svg"
+            src="/logos/logo.svg"
             alt="card"
             height={100}
             width={100}
