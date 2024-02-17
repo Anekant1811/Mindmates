@@ -42,11 +42,7 @@ export default function Navbar() {
           {navLinks?.map((item) => {
             return (
               <div key={item?.id} className="p transition-all hover:scale-105">
-<<<<<<< HEAD
                 <Link href={item?.url} className="mr-5 font-semibold">
-=======
-                <Link href={item?.url} className="mr-5">
->>>>>>> 95cc994e48ba31c35f645d020dde938ce27144e7
                   {item?.title}
                 </Link>
               </div>
