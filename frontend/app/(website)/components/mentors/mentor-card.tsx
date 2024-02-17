@@ -8,12 +8,13 @@ export default function MentorCard({
   cardData,
   key,
   bigCard = false,
+  data,
 }) {
   return (
     <div
       className={cx(
-        `rounded-2xl my-8 py-8 px-4 h-auto cursor-pointer bg-background ${
-          !bigCard ? "sm:w-1/3" : "w-[90%] mx-auto"
+        `rounded-2xl my-4 py-4 px-4 h-auto mx-auto cursor-pointer bg-background ${
+          !bigCard ? "sm:w-1/3" : "w-[92%] mx-auto"
         } flex flex-col items-center border border-lightGreen`,
         {
           "sm:my-4": activeCard === cardData?.id,
@@ -24,18 +25,18 @@ export default function MentorCard({
     >
       <div className="w-[8vw] h-[8vw] mt-8 rounded-[100%] bg-gradient-to-r from-lightGreen to-darkGreen p-1">
         <Image
-          src={cardData?.avatarUrl}
+          src={data?.profile}
           alt="card"
-          height={100}
-          width={100}
+          height={1000}
+          width={1000}
           className="h-full w-full object-cover object-center rounded-full"
         />
       </div>
       <h2 className="text-2xl font-semibold text-center mt-2">
-        {cardData?.title}
+        {cardData?.anonymous}
       </h2>
       <div className="flex gap-2 mt-2 mb-2">
-        {cardData?.category?.map((i) => {
+        {cardData?.expertise?.map((i) => {
           return (
             <div
               key={i}
@@ -51,8 +52,18 @@ export default function MentorCard({
           "text-[#172048]": activeCard !== cardData?.id,
         })}
       >
-        {cardData?.desc}
+        {cardData?.bio}
       </p>
+      <button
+        onClick={(e) => {
+          // history.push("/mindmates");
+        }}
+        className={
+          "bg-gradient-to-r text-white from-[#4ED6DA] w-full font-semibold to-[#04789D] text-center text-lg h-fit py-1.5 my-1 px-8 rounded-3xl"
+        }
+      >
+        Start Chat
+      </button>
     </div>
   );
 }

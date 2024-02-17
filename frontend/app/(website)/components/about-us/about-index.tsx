@@ -1,9 +1,13 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import bg from "../../../Assets/elements/Group 9.png";
 import bg1 from "../../../Assets/elements/Group 8 (1).png";
+import { useRouter } from "next/navigation";
 
 export default function AboutUsIndex() {
+  const history = useRouter();
+
   return (
     <section id="about-us" className="py-8 relative">
       <Image src={bg} alt="bg" className="absolute -top-[2vw] left-0" />
@@ -35,6 +39,9 @@ export default function AboutUsIndex() {
             wellness.
           </p>
           <button
+            onClick={(e) => {
+              history.push("/mindmates");
+            }}
             className={
               "bg-gradient-to-r text-white from-[#4ED6DA] font-semibold to-[#04789D] text-center text-lg h-fit py-1.5 my-1 px-8 rounded-3xl"
             }

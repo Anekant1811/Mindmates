@@ -1,8 +1,6 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
-
-import { AiOutlineBell, AiOutlineEye } from "react-icons/ai";
 import bg from "../../Assets/bg.jpg";
 import EditMindmate from "./EditMindmate";
 import axios from "axios";
@@ -11,7 +9,7 @@ import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import Context from "../../../context/Context";
 import Navbar from "../Components/Navbar";
-import ToggleButton from '../Components/ToggleButton'
+import ToggleButton from "../Components/ToggleButton";
 
 const Trubuddy = () => {
   const [showEdit, setShowEdit] = useState(false);
@@ -53,14 +51,7 @@ const Trubuddy = () => {
       </div>
       <div className="absolute z-10 bg-white w-[85vw] md:w-[70vw] h-[85vh] md:h-[55vh] flex flex-col items-center rounded-lg bottom-0 left-1/2 -translate-x-1/2 shadow-xl shadow-gray-500">
         <div className="flex items-start justify-between p-2 md:p-4 w-full">
-          <div className="flex items-center">
-            <AiOutlineEye
-              className="ml-2 text-3xl cursor-pointer"
-              onClick={(e) => {
-                history.push(`/trubuddies/${mindmate?._id}`);
-              }}
-            />
-          </div>
+          <div className="flex items-center"></div>
           <div className="-mt-10 md:-mt-20 md:ml-[5vw] flex flex-col items-center">
             <Image
               src={mindmate?.profile}

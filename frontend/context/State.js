@@ -10,6 +10,7 @@ const State = (props) => {
   const [showLogin, setShowLogin] = useState(false);
   const [mindmate, setMindmate] = useState();
   const [messages, setMessages] = useState([]);
+  const [allMindmates, setAllMindmates] = useState();
   const [clickedUser, setClickedUser] = useState({
     _id: "65cf30ffcf5f3b5e917dfde8",
   });
@@ -36,6 +37,7 @@ const State = (props) => {
         });
     }
   };
+
   const getUser = async () => {
     try {
       const response = await axios.get(`${URL}login/sucess`, {
@@ -47,7 +49,14 @@ const State = (props) => {
     }
   };
 
+  const getMindmates = async () => {
+    axios.get(`${BASE_URL}/mindmate/get-all`).then((res) => {
+      setAllMindmates(res.data);
+    });
+  };
+
   useEffect(() => {
+    getMindmates();
     getUser();
   }, []);
 
@@ -73,6 +82,7 @@ const State = (props) => {
         setQuestionnaire,
         clickedUser,
         setClickedUser,
+        allMindmates,
       }}
     >
       {props.children}

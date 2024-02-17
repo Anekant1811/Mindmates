@@ -59,7 +59,7 @@ export default function Navbar() {
                 setShowLogin(true);
               }}
             >
-              Explore
+              Register
             </button>
           ) : (
             <div className="relative">
