@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import MentorCard from "../components/mentors/mentor-card";
 
 export default function MentorsList() {
@@ -46,6 +47,8 @@ export default function MentorsList() {
       desc: "You can connect directly, quickly and easily, and there is no need to doubt the quality of the consultation and treatment offered.",
     },
   ];
+  const [activeCard, setActiveCard] = useState(2);
+
   return (
     <section className="md:w-4/5 mx-auto my-6">
       <h2
@@ -59,9 +62,16 @@ export default function MentorsList() {
           Posts
         </span>
       </h2>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 h-[90vh] overflow-y-auto">
         {mentorCardsData?.map((item) => {
-          return <MentorCard cardData={item} key={item?.id}  />;
+          return (
+            <MentorCard
+              cardData={item}
+              bigCard={true}
+              key={item?.id}
+              setActiveCard={setActiveCard}
+            />
+          );
         })}
       </div>
     </section>

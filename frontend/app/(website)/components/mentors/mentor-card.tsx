@@ -7,7 +7,7 @@ export default function MentorCard({
   setActiveCard,
   cardData,
   key,
-  bigCard,
+  bigCard = false,
 }) {
   return (
     <div
