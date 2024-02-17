@@ -14,7 +14,7 @@ export default function ServiceCard({
   return (
     <div
       className={cx(
-        "rounded-2xl py-8 px-4 bg-background sm:w-1/3 flex flex-col items-center cursor-pointer transition-all",
+        "rounded-2xl py-8 px-4 shadow-md shadow-[#c5c5c5] bg-background md:mb-0 mb-4 sm:w-1/3 flex flex-col items-center cursor-pointer transition-all",
         {
           "bg-gradient-to-br from-lightGreen to-darkGreen text-white":
             activeCard === cardData?.id,

@@ -10,7 +10,7 @@ const WhatToDo = () => {
           I am not sure what I am going through
         </h1>
         <div>
-          {["Talk to the therapist", "I'm happy to take the Questionnaire"].map(
+          {["Chat with Experts", "I'm happy to take the Questionnaire"].map(
             (e) => {
               return <Block key={e} data={e} />;
             }
@@ -30,7 +30,7 @@ const Block = ({ data }) => {
         if (data.includes("Questionnaire")) {
           history.push("/questionnaire/questions/1");
         } else {
-          history.push("/therapy");
+          history.push("/mindmates");
         }
       }}
       className="rounded-xl mb-4 md:mb-5 mx-auto h-fit bg-gradient-to-b transition-all from-lightGreen to-darkGreen p-[2px] hover:p-[2px] cursor-pointer transitionAnimate hover:scale-105"

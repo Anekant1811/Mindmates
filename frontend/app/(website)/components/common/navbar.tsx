@@ -28,11 +28,11 @@ export default function Navbar() {
         </div>
         <div className="logo my-auto max-w-fit">
           <Image
-            src="/logos/logo.svg"
+            src="/logo.png"
             alt="card"
-            height={100}
-            width={100}
-            className="h-auto sm:w-[15vw] cursor-pointer"
+            height={1000}
+            width={1000}
+            className="h-auto w-[30vw] md:w-[15vw] cursor-pointer"
             onClick={(e) => {
               history.push("/");
             }}

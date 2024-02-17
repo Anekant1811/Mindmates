@@ -9,11 +9,14 @@ import axios from "axios";
 import { getCookie } from "cookies-next";
 import Context from "../../../../context/Context";
 import BASE_URL from "../../../url";
+import { IoEnterOutline } from "react-icons/io5";
+import { TiTick } from "react-icons/ti";
 
 const Trubuddy = () => {
   const { mindmate, setMindmate } = useContext(Context);
   const history = useRouter();
   const pathname = usePathname();
+  const [queries, setQueries] = useState([]);
 
   let getData = () => {
     axios
@@ -26,9 +29,26 @@ const Trubuddy = () => {
       });
   };
 
+  let getSchedule = () => {
+    if (mindmate?._id) {
+      axios
+        .post(`${BASE_URL}/meeting/get-mindmate/${mindmate?._id}`)
+        .then((res) => {
+          setQueries(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    getSchedule();
+  }, [mindmate]);
 
   return (
     <div className="">
@@ -71,14 +91,16 @@ const Trubuddy = () => {
             Scheduled Meetings
           </p>
         </div>
-        {!mindmate?.mates ? (
+        {!queries ? (
           <div className="w-full flex items-center justify-center text-gray">
-            <p className="text-xl">Sorry, You don&apos;t have any mate</p>
+            <p className="text-xl">
+              Sorry, You don&apos;t have any Meeting Scheduled
+            </p>
           </div>
         ) : (
-          <div className="w-full grid overflow-y-auto pb-5 grid-cols-3 gap-3 md:gap-5 px-3 md:px-5 pt-2 md:pt-3">
-            {mindmate?.mates?.map((e) => {
-              return <BuddyBlock id={e} key={e} />;
+          <div className="w-full grid overflow-y-auto pb-5 grid-cols-2 gap-3 md:gap-5 px-3 md:px-5 pt-2 md:pt-3">
+            {queries?.map((e, i) => {
+              return <BuddyBlock data={e} key={i} getSchedule={getSchedule} />;
             })}
           </div>
         )}
@@ -87,47 +109,52 @@ const Trubuddy = () => {
   );
 };
 
-const BuddyBlock = ({ id }) => {
-  const history = useRouter();
-  const [user, setUser] = useState();
-
-  useEffect(() => {
-    axios
-      .post(`${BASE_URL}/login/get-one/${id}`)
-      .then((res) => {
-        console.log(res.data);
-        setUser(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [id]);
+const BuddyBlock = ({ data, getSchedule }) => {
+  const { mindmate } = useContext(Context);
 
   return (
-    <div
-      className="bg-gray-200 flex p-1 md:p-2 rounded-md relative shadow-md shadow-gray-400 cursor-pointer"
-      onClick={(e) => {
-        e.preventDefault();
-        history.push(`/mindmate/chats/${id}`);
-      }}
-    >
-      <Image
-        src={user?.profile}
-        width={10000}
-        height={10000}
-        alt="Profile"
-        className="w-[12vw] h-[12vw] object-cover object-center md:w-[3vw] md:h-[3vw] rounded-full border-2 border-lightGreen"
-      />
-      <div className="ml-1 md:ml-3">
-        <h1 className="md:text-lg text-darkGreen text-sm font-semibold">
-          {user?.anonymous ? user?.anonymous : user?.name}
-        </h1>
-      </div>
-      {user?.unseen > 0 ? (
-        <div className="absolute right-[64%] md:text-base text-xs md:right-5 -bottom-0 md:bottom-1/2 md:translate-y-1/2 bg-newBlue px-1 md:px-2 text-white rounded-full">
-          {user?.unseen}
+    <div className="bg-gray-200 flex p-1 md:p-2 w-full border border-[#e3e3e3] justify-between items-center rounded-md relative shadow-md shadow-gray-400 cursor-pointer">
+      <div className="flex items-center">
+        <Image
+          src={data?.user?.profile}
+          width={10000}
+          height={10000}
+          alt="Profile"
+          className="w-[12vw] h-[12vw] object-cover object-center md:w-[4vw] md:h-[4vw] rounded-full border-2 border-lightGreen"
+        />
+        <div className="ml-1 md:ml-3">
+          <h1 className="md:text-lg text-darkGreen text-sm font-semibold">
+            {data?.user?.anonymous ? data?.user?.anonymous : data?.user?.name}
+          </h1>
+          <p className="mt-0 text-sm">{data?.topic}</p>
         </div>
-      ) : null}
+      </div>
+      <div className="flex items-center">
+        {data?.status === "Pending" ? (
+          <IoEnterOutline
+            onClick={(e) => {
+              window.open(mindmate?.meeting_url);
+              axios
+                .post(`${BASE_URL}/meeting/update`, { id: data?._id })
+                .then((res) => {
+                  getSchedule();
+                });
+            }}
+            className="bg-lightGreen text-white text-4xl p-1.5 rounded-full"
+          />
+        ) : data?.status === "Ongoing" ? (
+          <TiTick
+            onClick={(e) => {
+              axios
+                .post(`${BASE_URL}/meeting/complete`, { id: data?._id })
+                .then((res) => {
+                  getSchedule();
+                });
+            }}
+            className="bg-darkGreen text-white ml-3 text-4xl p-1.5 rounded-full"
+          />
+        ) : null}
+      </div>
     </div>
   );
 };

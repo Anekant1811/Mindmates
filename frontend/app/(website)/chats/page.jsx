@@ -9,6 +9,7 @@ import BASE_URL, { SOCKET_URL } from "../../url";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { format } from "timeago.js";
+import Meeting from "./meeting";
 
 const Page = () => {
   const [activeCard, setActiveCard] = useState(2);
@@ -37,7 +38,7 @@ const Page = () => {
   ];
   const context = useContext(Context);
   const id = context?.clickedUser?._id;
-  const { user, setShowLogin } = useContext(Context);
+  const { user, setShowLogin, clickedUser, allMindmates } = useContext(Context);
   const socket = io(SOCKET_URL);
   const history = useRouter();
   const chatContainerRef = useRef();
@@ -113,31 +114,40 @@ const Page = () => {
       socket.off("message");
     };
   }, [messages]);
+  const [show, setShow] = useState(false);
 
   return (
     <div className="w-full h-[85vh] bg-background border-b border-gray px-7 py-6 flex items-start justify-between">
+      <Meeting show={show} setShow={setShow} />
       <div className="w-[68%] h-full rounded-2xl shadow-gray shadow-sm flex flex-col">
         <div className="bg-greenish h-[12%] rounded-t-2xl w-full flex items-center justify-between px-4 py-3">
           <div className="flex gap-5 text-white items-center">
             <Image
-              src="/images/doctor-avatar.svg"
+              src={clickedUser?.profile}
               height={100}
               width={100}
               alt="user-profile"
               className="w-[4vw] h-[4vw] object-cover rounded-[100%]"
             />
             <div className="-ml-2">
-              <h3 className="text-lg font-semibold">User Name</h3>
+              <h3 className="text-lg font-semibold">
+                {clickedUser?.anonymous}
+              </h3>
               <p className="text-sm">The Mate You Need the most</p>
             </div>
           </div>
-          <Image
-            src="/logos/duo.svg"
-            height={100}
-            width={100}
-            alt="user-profile"
-            className="w-[3vw] h-[3vw] rounded-[100%]"
-          />
+          {clickedUser?.meeting_url && (
+            <Image
+              src="/logos/duo.svg"
+              onClick={(e) => {
+                setShow(!show);
+              }}
+              height={100}
+              width={100}
+              alt="user-profile"
+              className="w-[3vw] h-[3vw] rounded-[100%] cursor-pointer"
+            />
+          )}
         </div>
         <div className="mx-3 mt-auto h-[88%] pb-3 flex flex-col items-center mb-3">
           <div className="h-[90%] mx-auto w-full">
@@ -212,7 +222,7 @@ const Page = () => {
           </h1>
         </div>
         <div className="h-[88%] rounded-b-2xl bg-white overflow-y-auto">
-          {mentorCardsData?.map((cardData) => {
+          {allMindmates?.map((cardData) => {
             return (
               <MenotrCard
                 key={cardData?.id}
@@ -220,6 +230,7 @@ const Page = () => {
                 setActiveCard={setActiveCard}
                 cardData={cardData}
                 bigCard={true}
+                data={cardData}
               />
             );
           })}

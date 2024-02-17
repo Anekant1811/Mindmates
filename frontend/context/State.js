@@ -11,9 +11,9 @@ const State = (props) => {
   const [mindmate, setMindmate] = useState();
   const [messages, setMessages] = useState([]);
   const [allMindmates, setAllMindmates] = useState();
-  const [clickedUser, setClickedUser] = useState({
-    _id: "65cf30ffcf5f3b5e917dfde8",
-  });
+  const [clickedUser, setClickedUser] = useState({});
+  const [queries, setQueries] = useState([]);
+  const [width, setWidth] = useState();
   const [questionnaire, setQuestionnaire] = useState({
     age: "",
     problem: "",
@@ -55,10 +55,30 @@ const State = (props) => {
     });
   };
 
+  const getQueries = async () => {
+    if (user?._id) {
+      axios
+        .post(`${BASE_URL}/meeting/get-mate/${user?._id}`)
+        .then((res) => {
+          setQueries(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   useEffect(() => {
     getMindmates();
     getUser();
+    if (typeof window != undefined) {
+      setWidth(window.innerWidth);
+    }
   }, []);
+
+  useEffect(() => {
+    getQueries();
+  }, [user]);
 
   const dcrpyt = (text) => {
     var bytes = CryptoJS.AES.decrypt(text, "MINDMATES");
@@ -71,6 +91,7 @@ const State = (props) => {
       value={{
         dcrpyt,
         mindmate,
+        width,
         setMindmate,
         showLogin,
         setShowLogin,
@@ -83,6 +104,7 @@ const State = (props) => {
         clickedUser,
         setClickedUser,
         allMindmates,
+        queries,
       }}
     >
       {props.children}

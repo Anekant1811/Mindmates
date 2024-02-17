@@ -516,10 +516,9 @@ const Block = ({ data, page }) => {
               id: user?._id,
             })
             .then((response) => {
-              console.log(response);
               if (response.status == 200) {
                 getUser();
-                history.push("/questionnaire");
+                history.push("/dashboard");
               }
             })
             .catch((err) => {

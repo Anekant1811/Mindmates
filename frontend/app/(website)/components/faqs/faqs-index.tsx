@@ -7,21 +7,27 @@ export default function FaqsIndex() {
   const questions = [
     {
       q: "What is the minimum age for using MindMates?",
+      ans: "Minimum age for using MindMates is 12 years.",
     },
     {
       q: "Is my data and information safe with MindMates?",
+      ans: "Yes, your data is completely safe with us, and none of the information provided is used in any way.",
     },
     {
       q: "What happens if i get a message that makes me uncomfortable or seems is taking my privacy?",
+      ans: "All our MindMates are trusted and ensured. And then too if anything like this happens, the MindMate will be permanently banned.",
     },
     {
       q: "Can I become a MindMate?",
+      ans: "Yes, you can join us as a MindMate. And for that, kindly contact us directly.",
     },
     {
       q: "Is calling safe here with MindMates?",
+      ans: "All your chats and calls are done anonymously, and none of the information is sent to the MindMate.",
     },
     {
       q: "Is it free to use?",
+      ans: "Yes, our services are completely free to use as of now.",
     },
   ];
 

@@ -48,6 +48,7 @@ io.on("connection", (socket) => {
         sender: from,
         receiver: to,
         message: temp,
+        time: new Date(Date.now()),
       });
 
       await newMessage.save();

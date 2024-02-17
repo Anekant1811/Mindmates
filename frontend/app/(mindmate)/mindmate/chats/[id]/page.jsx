@@ -47,7 +47,6 @@ const TrubuddyChat = ({ params }) => {
   useEffect(() => {
     if (mindmate?._id) {
       socket.emit("connection");
-      console.log(mindmate?._id);
       socket.emit("join", { userId: mindmate?._id });
     }
   }, [mindmate]);
@@ -84,7 +83,7 @@ const TrubuddyChat = ({ params }) => {
   // Getting all old one to one chat messages
   useEffect(() => {
     if (id) {
-      context.getMessages(id, true);
+      context.getMessages(id, false);
     }
   }, [id, mindmate]);
 

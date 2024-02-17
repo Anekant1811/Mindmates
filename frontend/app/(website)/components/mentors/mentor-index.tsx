@@ -33,7 +33,7 @@ export default function MentorIndex() {
             history.push("/mindmates");
           }}
           className={
-            "bg-gradient-to-r text-white from-[#4ED6DA] mb-5 font-semibold to-[#04789D] text-center text-lg h-fit py-1.5 my-1 px-8 rounded-3xl"
+            "mb-5 font-semibold text-darkGreen hover:scale-105 border-b transition-all border-b-transparent hover:border-b-darkGreen text-center text-lg h-fit pt-1.5 my-1 px-2"
           }
         >
           View All

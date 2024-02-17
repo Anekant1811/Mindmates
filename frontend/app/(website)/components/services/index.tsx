@@ -1,25 +1,28 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ServiceCard from "./service-card";
 import cx from "classNames";
 import Image from "next/image";
 import bg from "../../../Assets/elements/Group 7.png";
 import bg1 from "../../../Assets/elements/Group 6.png";
+import Context from "../../../../context/Context";
 
 export default function ServicesIndex() {
+  const { width } = useContext(Context);
   const ServiceCardData = [
     {
       id: 1,
       avatarUrl: "/images/doctor-avatar.svg",
-      title: "Chat with doctor",
+      title: "Chat with Experts",
       desc: "You can connect directly, quickly and easily, and there is no need to doubt the quality of the consultation and treatment offered.",
-      redirectUrl:"/services/#mentors-list"
+      redirectUrl: "/mindmates",
     },
     {
       id: 2,
       avatarUrl: "/images/tablet-avatar.svg",
-      title: "Health Store",
+      title: "Anonymous Identity",
       desc: "Talk about the health complaints you are experiencing and don't hesitate to ask about the proper treatment",
+      redirectUrl: "/services/#mentors-list",
     },
     {
       id: 3,
@@ -43,14 +46,14 @@ export default function ServicesIndex() {
         className="absolute w-[22vw] top-[130vh] right-0 z-0"
       />
       <h1
-        className="text-2xl sm:text-3xl lg:text-4xl pb-5 font-bold md:w-4/5 mx-auto text-center my-6"
-        style={{ lineHeight: "3.1vw" }}
+        className="text-3xl sm:text-3xl lg:text-4xl pb-0 md:pb-5 font-bold md:w-4/5 mx-auto text-center my-6"
+        style={width < 600 ? { lineHeight: "7.5vw" } : { lineHeight: "3.1vw" }}
       >
         Why our <span className="text-gradient-01"> Mental Health </span>
         Consultants are <br />
         the Best Choice
       </h1>
-      <div className="cards sm:flex gap-y-3 gap-x-10">
+      <div className="cards sm:flex gap-y-8 md:gap-y-3 gap-x-10">
         {ServiceCardData?.map((cardData) => {
           return (
             <ServiceCard

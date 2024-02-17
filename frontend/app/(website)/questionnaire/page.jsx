@@ -42,7 +42,7 @@ const Questionnaire = () => {
           Questionnaire Analysis Report
         </h1>
         {user?.questionnaire?.backendAnswers?.map((e, i) => {
-          return <ReturnBlock data={e} key={i} index={i} />;
+          return <Block data={e} key={i} index={i} />;
         })}
         <p className="font-light text-center w-[85%] md:w-[90%] mx-auto my-8">
           <span className="font-semibold">Disclaimer:</span> This questionnaire
@@ -72,11 +72,11 @@ const Questionnaire = () => {
               })
               .then((res) => {
                 getUser();
+                history.push("/questionnaire/questions/ask-age");
               })
               .catch((err) => {
                 console.log(err);
               });
-            history.push("/questionnaire/questions/ask-age");
           }}
           className="px-16 md:w-fit w-[60vw] py-2 rounded-md font-medium bg-[#F2685D] text-white"
         >
@@ -84,11 +84,11 @@ const Questionnaire = () => {
         </button>
         <button
           onClick={(e) => {
-            history.push("/therapy");
+            history.push("/mindmates");
           }}
           className="md:ml-4 md:mt-0 mt-3 md:w-fit w-[60vw] bg-darkGreen px-10 text-white rounded-md font-medium py-2"
         >
-          Proceed to Therapy
+          Chat with Experts
         </button>
         <button
           onClick={(e) => {
