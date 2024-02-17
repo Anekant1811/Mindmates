@@ -210,16 +210,7 @@ const TrubuddyChat = ({ params }) => {
                   }}
                   className="bg-darkGreen w-[15%] md:w-[5%] cursor-pointer h-full rounded-e-lg md:rounded-e-2xl flex items-center justify-center"
                 >
-                  <IoMdSend
-                    className="text-white"
-                    size={
-                      typeof window != "undefined"
-                        ? window?.innerWidth < 500
-                          ? 29
-                          : 30
-                        : 0
-                    }
-                  />
+                  <IoMdSend className="text-white" size={33} />
                 </div>
               </div>
             </div>

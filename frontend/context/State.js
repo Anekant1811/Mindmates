@@ -10,6 +10,9 @@ const State = (props) => {
   const [showLogin, setShowLogin] = useState(false);
   const [mindmate, setMindmate] = useState();
   const [messages, setMessages] = useState([]);
+  const [clickedUser, setClickedUser] = useState({
+    _id: "65cf30ffcf5f3b5e917dfde8",
+  });
   const [questionnaire, setQuestionnaire] = useState({
     age: "",
     problem: "",
@@ -17,10 +20,14 @@ const State = (props) => {
     backendAnswers: [],
   });
 
-  let getMessages = (id) => {
-    if (id && mindmate?._id) {
+  let getMessages = (id, buddy) => {
+    if (id) {
       axios
-        .get(`${SOCKET_URL}api/get-messages/${id}/${mindmate?._id}`)
+        .get(
+          `${SOCKET_URL}api/get-messages/${id}/${
+            buddy ? clickedUser?._id : mindmate?._id
+          }`
+        )
         .then((res) => {
           setMessages(res.data);
         })
@@ -64,6 +71,8 @@ const State = (props) => {
         user,
         questionnaire,
         setQuestionnaire,
+        clickedUser,
+        setClickedUser,
       }}
     >
       {props.children}

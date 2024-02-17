@@ -1,10 +1,13 @@
 import Image from "next/image";
 import React from "react";
-import Button from "../common/Button";
+import bg from "../../../Assets/elements/Group 9.png";
+import bg1 from "../../../Assets/elements/Group 8 (1).png";
 
 export default function AboutUsIndex() {
   return (
-    <section id="about-us" className="py-8">
+    <section id="about-us" className="py-8 relative">
+      <Image src={bg} alt="bg" className="absolute -top-[2vw] left-0" />
+      <Image src={bg1} alt="bg" className="absolute -top-[5vw] right-0" />
       <h3 className="text-center text-3xl font-semibold mb-10">About Us</h3>
       <div className="flex flex-col sm:flex-row my-6 w-4/5 mx-auto items-center gap-5">
         <div className="sm:w-2/5">
