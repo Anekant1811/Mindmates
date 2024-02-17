@@ -7,6 +7,7 @@ const nextConfig = {
       "files.slack.com",
       "www.outsystems.com",
       "lh3.googleusercontent.com",
+      "cdn.pixabay.com",
     ],
   },
 };
