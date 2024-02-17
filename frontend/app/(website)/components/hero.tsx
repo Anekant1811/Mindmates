@@ -1,8 +1,8 @@
 "use client";
-import React, { useContext } from "react";
-import Button from "./common/Button";
 import Image from "next/image";
+import { useContext } from "react";
 import Context from "../../../context/Context";
+import "@lottiefiles/lottie-player";
 
 export default function Hero() {
   const { setShowLogin } = useContext(Context);
