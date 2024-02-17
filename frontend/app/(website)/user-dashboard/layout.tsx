@@ -5,7 +5,7 @@ export default function UserLayout({ children }) {
   return (
     <div className="flex bg-background">
       <UserMenu></UserMenu>
-      <main>{children}</main>
+      <main className="sm:w-[75vw]">{children}</main>
     </div>
   );
 }
