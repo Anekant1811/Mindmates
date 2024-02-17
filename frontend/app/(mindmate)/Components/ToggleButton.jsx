@@ -10,10 +10,11 @@ const ToggleButton = () => {
       onClick={(e) => {
         history.push("/mindmate/chats");
       }}
-      className="w-[4vw] h-[4vw] cursor-pointer border-2 border-lightGreen rounded-full flex items-center justify-center absolute right-5 bottom-5"
+      className="w-[5vw] h-[5vw] cursor-pointer border-2 border-lightGreen rounded-full flex items-center justify-center absolute right-5 bottom-5"
     >
       <Image
-        src={"/logos/logo-png.svg"}
+        src={"/logo-short.png"}
+        className="p-3"
         width={10000}
         height={10000}
         alt="Image"

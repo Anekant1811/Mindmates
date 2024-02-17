@@ -32,7 +32,7 @@ export default function Navbar() {
             alt="card"
             height={1000}
             width={1000}
-            className="h-auto w-[30vw] md:w-[15vw] cursor-pointer"
+            className="h-auto w-[38vw] md:w-[15vw] cursor-pointer"
             onClick={(e) => {
               history.push("/");
             }}
@@ -71,7 +71,7 @@ export default function Navbar() {
                 onClick={(e) => {
                   setShowLogout(!showLogout);
                 }}
-                className="w-[3.5vw] border border-lightGreen h-[3.5vw] rounded-full cursor-pointer"
+                className="md:w-[3.5vw] border border-lightGreen w-[8vw] h-[8vw] md:h-[3.5vw] rounded-full cursor-pointer"
               />
               {showLogout && (
                 <div className="absolute right-2 top-[4vw] bg-white px-2 rounded-md border border-lightGreen">
@@ -100,7 +100,7 @@ export default function Navbar() {
           )}
         </div>
       </nav>
-      <div className="py-[2.5vw]"></div>
+      <div className="py-[3.5vw] md:py-[2.5vw]"></div>
     </>
   );
 }

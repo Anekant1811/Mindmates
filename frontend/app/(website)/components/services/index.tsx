@@ -38,12 +38,12 @@ export default function ServicesIndex() {
       <Image
         src={bg}
         alt="bg"
-        className="absolute w-[23vw] top-[110vh] left-0 z-0"
+        className="absolute w-[23vw] md:block hidden top-[110vh] left-0 z-0"
       />
       <Image
         src={bg1}
         alt="bg"
-        className="absolute w-[22vw] top-[130vh] right-0 z-0"
+        className="absolute w-[22vw] md:block hidden top-[130vh] right-0 z-0"
       />
       <h1
         className="text-3xl sm:text-3xl lg:text-4xl pb-0 md:pb-5 font-bold md:w-4/5 mx-auto text-center my-6"
@@ -53,7 +53,7 @@ export default function ServicesIndex() {
         Consultants are <br />
         the Best Choice
       </h1>
-      <div className="cards sm:flex gap-y-8 md:gap-y-3 gap-x-10">
+      <div className="cards sm:flex gap-y-8 md:gap-y-3 md:px-0 px-5 gap-x-10">
         {ServiceCardData?.map((cardData) => {
           return (
             <ServiceCard

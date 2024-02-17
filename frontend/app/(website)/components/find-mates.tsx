@@ -1,16 +1,22 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
 import bg from "../../Assets/elements/Group 164.png";
 import { useRouter } from "next/navigation";
+import Context from "../../../context/Context";
 
 export default function FindMates() {
   const history = useRouter();
+  const { width } = useContext(Context);
 
   return (
-    <section className="py-24 mx-auto w-4/5 flex items-center">
-      <Image src={bg} alt="bg" className="absolute top-[370vh] left-0" />
-      <div className="hidden sm:block w-1/2">
+    <section className="py-24 hidden mx-auto w-4/5 flex flex-row items-center">
+      <Image
+        src={bg}
+        alt="bg"
+        className="absolute md:block hidden top-[370vh] left-0"
+      />
+      <div className="md:w-1/2">
         <Image
           src="/images/find-mates.svg"
           alt="card"
@@ -19,10 +25,12 @@ export default function FindMates() {
           className="h-auto w-4/5"
         />
       </div>
-      <div className="space-y-6">
+      <div className="space-y-6 md:mt-0 mt-3">
         <h2
           className="text-3xl sm:text-4xl md:text-5xl font-bold"
-          style={{ lineHeight: "3.8vw" }}
+          style={
+            width < 600 ? { lineHeight: "7.8vw" } : { lineHeight: "3.8vw" }
+          }
         >
           Find Your perfect
           <br /> <span className="text-gradient-01">Mind Mate</span>

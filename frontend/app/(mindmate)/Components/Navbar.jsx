@@ -20,7 +20,7 @@ const Navbar = () => {
         }}
         height={10000}
         alt="Profile"
-        className="w-[38vw] md:w-[3vw] cursor-pointer h-[34vw] m-3 border border-lightGreen md:h-[3vw] object-cover object-center rounded-full"
+        className="w-[34vw] md:w-[3vw] cursor-pointer h-[34vw] m-3 border border-lightGreen md:h-[3vw] object-cover object-center rounded-full"
       />
       {setshowLogout && (
         <div

@@ -32,18 +32,18 @@ export default function FaqsIndex() {
   ];
 
   return (
-    <section className="bg-gradient-to-b from-[#44b4b43c] to-[#106d8c36] py-16 px-[9vw] flex flex-col justify-between items-center sm:flex-row">
-      <div className="w-6/12">
-        <h2 className="text-2xl sm:text-4xl font-bold text-darkGreen text-center">
+    <section className="bg-gradient-to-b from-[#44b4b43c] to-[#106d8c36] py-6 md:py-16 px-[9vw] flex flex-col justify-between items-center sm:flex-row">
+      <div className="w-full md:w-6/12">
+        <h2 className="text-3xl sm:text-4xl font-bold text-darkGreen text-center">
           FAQ&apos;s
         </h2>
-        <div className="w-10/12 h-[52vh] pr-2 overflow-y-auto mx-auto my-8 space-y-2">
+        <div className="md:w-10/12 h-[50vh] md:h-[52vh] pr-2 overflow-y-auto mx-auto my-8 space-y-2">
           {questions?.map((e, i) => {
             return <FAQ data={e} key={i} />;
           })}
         </div>
       </div>
-      <div className="w-4/12 h-auto">
+      <div className="w-4/12 md:block hidden h-auto">
         <Image
           src="/images/faq.svg"
           alt="card"
