@@ -2,8 +2,8 @@ import Image from "next/image";
 import React from "react";
 import cx from "classNames";
 
-export default function MenotrCard({
-  activeCard,
+export default function MentorCard({
+  activeCard = 0,
   setActiveCard,
   cardData,
   key,

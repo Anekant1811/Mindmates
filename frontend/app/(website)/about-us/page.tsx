@@ -1,6 +1,7 @@
 import React from "react";
 import CommunityIndex from "../components/community-posts/community-index";
 import CommunnityPost from "./community-post";
+import MentorsList from "./mentors-list";
 
 export default function Page() {
   return (
@@ -19,6 +20,7 @@ export default function Page() {
         </div>
       </section>
       <CommunnityPost />
+      <MentorsList />
     </main>
   );
 }
