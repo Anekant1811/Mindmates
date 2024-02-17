@@ -7,11 +7,14 @@ export default function MenotrCard({
   setActiveCard,
   cardData,
   key,
+  bigCard,
 }) {
   return (
     <div
       className={cx(
-        "rounded-2xl my-8 py-8 px-4 h-auto cursor-pointer bg-background sm:w-1/3 flex flex-col items-center",
+        `rounded-2xl my-8 py-8 px-4 h-auto cursor-pointer bg-background ${
+          !bigCard ? "sm:w-1/3" : "w-[90%] mx-auto"
+        } flex flex-col items-center border border-lightGreen`,
         {
           "sm:my-4": activeCard === cardData?.id,
         }

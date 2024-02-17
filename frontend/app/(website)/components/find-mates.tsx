@@ -1,10 +1,11 @@
 import Image from "next/image";
 import React from "react";
-import Button from "./common/Button";
+import bg from "../../Assets/elements/Group 164.png";
 
 export default function FindMates() {
   return (
     <section className="py-24 mx-auto w-4/5 flex items-center">
+      <Image src={bg} alt="bg" className="absolute top-[370vh] left-0" />
       <div className="hidden sm:block w-1/2">
         <Image
           src="/images/find-mates.svg"

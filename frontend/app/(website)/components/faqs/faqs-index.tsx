@@ -31,7 +31,7 @@ export default function FaqsIndex() {
         <h2 className="text-2xl sm:text-4xl font-bold text-darkGreen text-center">
           FAQ&apos;s
         </h2>
-        <div className="w-4/5 h-[52vh] overflow-y-auto mx-auto my-8 space-y-2">
+        <div className="w-10/12 h-[52vh] pr-2 overflow-y-auto mx-auto my-8 space-y-2">
           {questions?.map((e, i) => {
             return <FAQ data={e} key={i} />;
           })}

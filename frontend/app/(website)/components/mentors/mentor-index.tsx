@@ -29,7 +29,7 @@ export default function MentorIndex() {
   const [activeCard, setActiveCard] = useState(2);
 
   return (
-    <section className="py-8">
+    <section className="py-8 z-50">
       <h2 className="text-3xl md:text-4xl font-bold text-center mt-4 mb-6">
         Our <span className="text-gradient-01"> Mind Mates </span>
       </h2>

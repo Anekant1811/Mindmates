@@ -2,6 +2,9 @@
 import React, { useState } from "react";
 import ServiceCard from "./service-card";
 import cx from "classNames";
+import Image from "next/image";
+import bg from "../../../Assets/elements/Group 7.png";
+import bg1 from "../../../Assets/elements/Group 6.png";
 
 export default function ServicesIndex() {
   const ServiceCardData = [
@@ -28,6 +31,16 @@ export default function ServicesIndex() {
 
   return (
     <section id="services" className="py-16 mx-4 sm:mx-6 md:mx-auto md:w-4/5">
+      <Image
+        src={bg}
+        alt="bg"
+        className="absolute w-[23vw] top-[110vh] left-0 z-0"
+      />
+      <Image
+        src={bg1}
+        alt="bg"
+        className="absolute w-[22vw] top-[130vh] right-0 z-0"
+      />
       <h1
         className="text-2xl sm:text-3xl lg:text-4xl pb-5 font-bold md:w-4/5 mx-auto text-center my-6"
         style={{ lineHeight: "3.1vw" }}
