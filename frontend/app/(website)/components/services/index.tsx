@@ -6,7 +6,9 @@ import Image from "next/image";
 import bg from "../../../Assets/elements/Group 7.png";
 import bg1 from "../../../Assets/elements/Group 6.png";
 import Context from "../../../../context/Context";
-
+// import Slider from "react-slick";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 export default function ServicesIndex() {
   const { width } = useContext(Context);
   const ServiceCardData = [
@@ -33,6 +35,13 @@ export default function ServicesIndex() {
   ];
   const [activeCard, setActiveCard] = useState(2);
 
+  // const slickSetting = {
+  //   dots: true,
+  //   infinite: false,
+  //   speed: 500,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1,
+  // };
   return (
     <section id="services" className="py-16 mx-4 sm:mx-6 md:mx-auto md:w-4/5">
       <Image
@@ -53,6 +62,7 @@ export default function ServicesIndex() {
         Consultants are <br />
         the Best Choice
       </h1>
+
       <div className="cards sm:flex gap-y-8 md:gap-y-3 md:px-0 px-5 gap-x-10">
         {ServiceCardData?.map((cardData) => {
           return (
@@ -65,6 +75,7 @@ export default function ServicesIndex() {
           );
         })}
       </div>
+
       <div className="flex justify-center gap-3 mt-5">
         {ServiceCardData?.map((cardData) => {
           return (
