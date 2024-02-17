@@ -83,7 +83,7 @@ app.get(
 app.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: `http://localhost:3000/`,
+    successRedirect: `http://localhost:3000/dashboard`,
     failureRedirect: `http://localhost:3000`,
   })
 );

@@ -1,16 +1,24 @@
 "use client";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserMenu from "../components/common/user-menu";
 import Context from "../../../context/Context";
 import EditDashboard from "./EditMindmate";
+import AgreeModal from "../components/common/AgreeModal";
 
 export default function UserDashboard() {
   const [show, setShow] = useState(false);
-  const { user } = useContext(Context);
+  const { user, setShowConsent } = useContext(Context);
+
+  useEffect(() => {
+    if (localStorage.getItem("mindmate") != "true") {
+      setShowConsent(true);
+    }
+  }, []);
 
   return (
     <div className="flex md:flex-row flex-col bg-white px-[9vw]">
       <UserMenu></UserMenu>
+      <AgreeModal />
       <EditDashboard showEdit={show} setShowEdit={setShow} />
       <main className="w-full md:w-[75vw]">
         <div className="my-12 w-auto md:px-8">

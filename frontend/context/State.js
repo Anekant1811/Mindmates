@@ -15,6 +15,7 @@ const State = (props) => {
   const [queries, setQueries] = useState([]);
   const [width, setWidth] = useState();
   const [posts, setPosts] = useState([]);
+  const [showConsent, setShowConsent] = useState(false);
   const [questionnaire, setQuestionnaire] = useState({
     age: "",
     problem: "",
@@ -120,6 +121,8 @@ const State = (props) => {
         queries,
         posts,
         getPosts,
+        showConsent,
+        setShowConsent,
       }}
     >
       {props.children}
