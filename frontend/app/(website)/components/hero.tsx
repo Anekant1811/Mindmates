@@ -1,11 +1,15 @@
 "use client";
-import Image from "next/image";
 import { useContext } from "react";
+// import Lottie from "lottie-react";
+import Lottie from "react-lottie";
 import Context from "../../../context/Context";
-import * as LottiePlayer from "@lottiefiles/lottie-player";
+import heroIllu from "../../../public/images/hero-illus.json";
 export default function Hero() {
   const { setShowLogin } = useContext(Context);
-
+  const options = {
+    animationData: heroIllu,
+    loop: true,
+  };
   return (
     <div className="bg-background">
       <div className="sm:flex gap-5 py-8 mx-4 sm:mx-6 md:mx-auto md:w-4/5 max-w-[100rem]">
@@ -40,23 +44,14 @@ export default function Hero() {
             Get Started
           </button>
         </div>
-        <div className="bg-[#D5E9F5] h-auto w-7/12 rounded-tl-[4rem] mx-auto">
+        <div className=" h-auto w-7/12 rounded-tl-[4rem] mx-auto">
           <div className="w-auto hidden sm:block">
-            {/* <Image
-              src="/images/hero.gif"
-              alt="card"
-              height={100}
-              width={100}
-              className="h-full object-cover object-center w-full"
-            /> */}
-            {/* <lottie-LottiePlayer
-              autoplay
-              controls
-              loop
-              mode="normal"
-              src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
-              style="width: 320px"
-            ></lottie-player> */}
+            <Lottie
+              options={options}
+              // className="h-auto w-full sm:pt-5 ml-auto self-end"
+              width="100%" // Specify width
+              height="auto"
+            />
           </div>
         </div>
       </div>
