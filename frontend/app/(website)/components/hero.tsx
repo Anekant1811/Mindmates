@@ -2,6 +2,8 @@
 import { useContext } from "react";
 // import Lottie from "lottie-react";
 // import Lottie from "react-lottie";
+import Lottie from "react-lottie-player";
+
 import Context from "../../../context/Context";
 import heroIllu from "../../../public/images/hero-illus.json";
 export default function Hero() {
@@ -10,9 +12,10 @@ export default function Hero() {
     animationData: heroIllu,
     loop: true,
   };
+
   return (
     <div className="bg-background">
-      <div className="sm:flex gap-5 py-8 mx-4 sm:mx-6 md:mx-auto md:w-4/5 max-w-[100rem]">
+      <div className="sm:flex gap-5 py-[5.5vw] mx-4 sm:mx-6 md:mx-auto md:w-4/5 max-w-[100rem]">
         <div className="sm:w-2/3 h-auto my-auto">
           <h1
             className="sm:text-start text-2xl sm:text-3xl lg:text-5xl font-bold"
@@ -44,14 +47,18 @@ export default function Hero() {
             Get Started
           </button>
         </div>
-        <div className=" h-auto w-7/12 rounded-tl-[4rem] mx-auto">
+        <div className=" h-auto w-9/12 rounded-tl-[4rem] mx-auto">
           <div className="w-auto hidden sm:block">
-            {/* <Lottie
-              options={options}
+            <Lottie
+              loop
+              animationData={heroIllu}
+              play
+              style={{ width: "auto", height: "auto" }}
+
               // className="h-auto w-full sm:pt-5 ml-auto self-end"
-              width="100%" // Specify width
-              height="auto"
-            /> */}
+              // width="100%" // Specify width
+              // height="auto"
+            />
           </div>
         </div>
       </div>
