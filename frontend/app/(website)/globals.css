@@ -46,3 +46,8 @@ input[type=number] {
 ::-webkit-scrollbar-thumb:hover {
   background: #44b4b4;
 }
+
+
+.slick-list{
+  width: inherit;
+}

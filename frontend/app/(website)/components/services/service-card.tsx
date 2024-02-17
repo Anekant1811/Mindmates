@@ -9,7 +9,10 @@ export default function ServiceCard({
   cardData,
   setActiveCard,
   activeCard,
+  bigCard = false,
+  slick = false,
 }) {
+  console.log(slick, " ");
   const router = useRouter();
   return (
     <div
@@ -18,6 +21,7 @@ export default function ServiceCard({
         {
           "bg-gradient-to-br from-lightGreen to-darkGreen text-white":
             activeCard === cardData?.id,
+          "w-fit": slick,
         }
       )}
       key={key}
