@@ -14,6 +14,7 @@ const State = (props) => {
   const [clickedUser, setClickedUser] = useState({});
   const [queries, setQueries] = useState([]);
   const [width, setWidth] = useState();
+  const [posts, setPosts] = useState([]);
   const [questionnaire, setQuestionnaire] = useState({
     age: "",
     problem: "",
@@ -68,9 +69,21 @@ const State = (props) => {
     }
   };
 
+  const getPosts = async () => {
+    axios
+      .get(`${BASE_URL}/posts/get-all`)
+      .then((res) => {
+        setPosts(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     getMindmates();
     getUser();
+    getPosts();
     if (typeof window != undefined) {
       setWidth(window.innerWidth);
     }
@@ -105,6 +118,8 @@ const State = (props) => {
         setClickedUser,
         allMindmates,
         queries,
+        posts,
+        getPosts,
       }}
     >
       {props.children}

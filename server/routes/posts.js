@@ -2,7 +2,9 @@ const posts = require("express").Router();
 const Posts = require("../db/schema/postSchema");
 
 posts.get("/get-all", async (req, res) => {
-  const response = await Posts.find().populate("user");
+  const response = await Posts.find()
+    .populate("user")
+    .populate("comments.user");
   res.send(response);
 });
 
@@ -44,10 +46,10 @@ posts.post("/like", async (req, res) => {
   }
 });
 
-posts.post("/comment", (req, res) => {
+posts.post("/comment", async (req, res) => {
   const { id, post_id, text } = req.body;
 
-  const response = Posts.updateOne(
+  const response = await Posts.updateOne(
     { _id: post_id },
     { $push: { comments: { text, user: id } } }
   );

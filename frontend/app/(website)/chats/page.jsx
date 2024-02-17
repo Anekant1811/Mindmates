@@ -119,15 +119,15 @@ const Page = () => {
   return (
     <div className="w-full h-[85vh] bg-background border-b border-gray px-7 py-6 flex items-start justify-between">
       <Meeting show={show} setShow={setShow} />
-      <div className="w-[68%] h-full rounded-2xl shadow-gray shadow-sm flex flex-col">
-        <div className="bg-greenish h-[12%] rounded-t-2xl w-full flex items-center justify-between px-4 py-3">
+      <div className="w-full md:mt-0 mt-4 md:w-[68%] h-full rounded-2xl shadow-gray shadow-sm flex flex-col">
+        <div className="bg-greenish h-[10%] md:h-[12%] rounded-t-2xl w-full flex items-center justify-between px-4 py-3">
           <div className="flex gap-5 text-white items-center">
             <Image
               src={clickedUser?.profile}
               height={100}
               width={100}
               alt="user-profile"
-              className="w-[4vw] h-[4vw] object-cover rounded-[100%]"
+              className="md:w-[4vw] w-[12vw] h-[12vw] md:h-[4vw] object-cover rounded-[100%]"
             />
             <div className="-ml-2">
               <h3 className="text-lg font-semibold">
@@ -145,12 +145,12 @@ const Page = () => {
               height={100}
               width={100}
               alt="user-profile"
-              className="w-[3vw] h-[3vw] rounded-[100%] cursor-pointer"
+              className="md:w-[3vw] w-[10vw] h-[10vw] md:h-[3vw] rounded-[100%] cursor-pointer"
             />
           )}
         </div>
-        <div className="mx-3 mt-auto h-[88%] pb-3 flex flex-col items-center mb-3">
-          <div className="h-[90%] mx-auto w-full">
+        <div className="mx-3 mt-auto h-[90%] md:h-[88%] pb-1 md:pb-3 flex flex-col items-center mb-3">
+          <div className="h-[92%] md:h-[90%] mx-auto w-full">
             <div
               ref={chatContainerRef}
               className="pt-3 w-full overflow-y-auto px-[1vw] h-full"
@@ -185,8 +185,8 @@ const Page = () => {
                 })}
             </div>
           </div>
-          <div className="h-[10%] flex items-center justify-center w-full">
-            <div className="flex items-center w-full h-[98%] md:h-[90%] px-3 md:px-2">
+          <div className="h-[8%] md:h-[10%] flex items-center justify-center w-full">
+            <div className="flex items-center w-full h-[95%] md:h-[90%] px-3 md:px-2">
               <input
                 type="text"
                 value={messageInput}
@@ -215,7 +215,7 @@ const Page = () => {
           </div>
         </div>
       </div>
-      <div className="w-[30%] h-full rounded-2xl shadow-gray shadow-sm">
+      <div className="w-[30%] md:block hidden h-full rounded-2xl shadow-gray shadow-sm">
         <div className="bg-greenish h-[12%] w-full rounded-t-2xl flex items-center justify-center">
           <h1 className="text-white text-2xl font-semibold">
             Recommanded Mates
