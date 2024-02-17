@@ -1,52 +1,43 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import MenotrCard from "./mentor-card";
+import Context from "../../../../context/Context";
+import { useRouter } from "next/navigation";
 
 export default function MentorIndex() {
-  const mentorCardsData = [
-    {
-      id: 1,
-      avatarUrl: "/images/doctor-avatar.svg",
-      title: "Your Well-Wisher",
-      category: ["Depression", "Phychology"],
-      desc: "You can connect directly, quickly and easily, and there is no need to doubt the quality of the consultation and treatment offered.",
-    },
-    {
-      id: 2,
-      avatarUrl: "/images/doctor-avatar.svg",
-      title: "Your Well-Wisher",
-      category: ["Depression", "Phychology"],
-      desc: "You can connect directly, quickly and easily, and there is no need to doubt the quality of the consultation and treatment offered.",
-    },
-    {
-      id: 3,
-      avatarUrl: "/images/doctor-avatar.svg",
-      title: "Your Well-Wisher",
-      category: ["Depression", "Phychology"],
-      desc: "You can connect directly, quickly and easily, and there is no need to doubt the quality of the consultation and treatment offered.",
-    },
-  ];
+  const { allMindmates } = useContext(Context);
   const [activeCard, setActiveCard] = useState(2);
+  const history = useRouter();
 
   return (
     <section className="py-8 z-50">
       <h2 className="text-3xl md:text-4xl font-bold text-center mt-4 mb-6">
-        Our <span className="text-gradient-01"> Mind Mates </span>
+        Our <span className="text-gradient-01"> MindMates </span>
       </h2>
-      <div className="w-full bg-gradient-to-tr from-[#d5e9f5] to-[#d4f5f5]">
-        <div className="w-4/5 sm:flex sm:gap-y-3 py-4 gap-x-8 justify-center mx-auto">
-          {mentorCardsData?.map((cardData) => {
+      <div className="w-full bg-gradient-to-tr flex items-center flex-col from-[#d5e9f5] to-[#d4f5f5]">
+        <div className="w-4/5 sm:flex sm:gap-y-3 pt-4 gap-x-8 justify-center mx-auto">
+          {allMindmates?.slice(0, 3)?.map((cardData) => {
             return (
               <MenotrCard
                 key={cardData?.id}
                 activeCard={activeCard}
                 setActiveCard={setActiveCard}
-                cardData={cardData} 
-                
+                cardData={cardData}
+                data={cardData}
               />
             );
           })}
         </div>
+        <button
+          onClick={(e) => {
+            history.push("/mindmates");
+          }}
+          className={
+            "bg-gradient-to-r text-white from-[#4ED6DA] mb-5 font-semibold to-[#04789D] text-center text-lg h-fit py-1.5 my-1 px-8 rounded-3xl"
+          }
+        >
+          View All
+        </button>
       </div>
     </section>
   );
