@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       <body>
         <State>
           <Navbar />
-          
+
           {children}
           <Footer />
         </State>
