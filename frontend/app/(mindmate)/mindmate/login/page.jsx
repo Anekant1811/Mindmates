@@ -69,6 +69,7 @@ const Mindmate = () => {
                 axios
                   .post(`${BASE_URL}/mindmate/login`, { ...user })
                   .then((response) => {
+                    console.log(response);
                     if (response.status == 200) {
                       history.push("/mindmate");
                       setMindmate(response.data.user);

@@ -13,13 +13,16 @@ import Context from "../../../context/Context";
 
 const Questionnaire = () => {
   let history = useRouter();
-  const { setShowLogin, user, getUser } = useContext(Context);
-  const { toPDF, targetRef } = usePDF({ filename: "Questionnaire.pdf" });
+  const { setShowLogin, user, getUser, getRecommanded } = useContext(Context);
+  const { toPDF, targetRef, } = usePDF({
+    filename: "Questionnaire.pdf",
+  });
 
   useEffect(() => {
     if (user?.questionnaire?.answers?.length == 0) {
       history.push("/questionnaire/questions/ask-age");
     }
+    getRecommanded();
   }, [user]);
 
   useEffect(() => {

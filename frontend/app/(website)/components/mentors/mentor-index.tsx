@@ -3,9 +3,10 @@ import { useContext, useState } from "react";
 import MenotrCard from "./mentor-card";
 import Context from "../../../../context/Context";
 import { useRouter } from "next/navigation";
+import MentorCard from "./mentor-card";
 
 export default function MentorIndex() {
-  const { allMindmates } = useContext(Context);
+  const { allMindmates, recommanded } = useContext(Context);
   const [activeCard, setActiveCard] = useState(2);
   const history = useRouter();
 

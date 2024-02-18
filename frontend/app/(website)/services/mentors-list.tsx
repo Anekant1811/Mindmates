@@ -5,7 +5,7 @@ import Context from "../../../context/Context";
 import { FaSort } from "react-icons/fa";
 
 export default function MentorsList() {
-  const { allMindmates } = useContext(Context);
+  const { allMindmates, recommanded } = useContext(Context);
   const [search, setSearch] = useState("");
   const [activeCard, setActiveCard] = useState(2);
   const [showSorting, setShowSorting] = useState(false);
@@ -73,6 +73,14 @@ export default function MentorsList() {
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+        <MentorCard
+          cardData={recommanded}
+          data={recommanded}
+          bigCard={true}
+          key={recommanded?.id}
+          setActiveCard={setActiveCard}
+          recommanded={true}
+        />
         {allMindmates
           ?.filter((e) => {
             return e?.anonymous?.toLowerCase().includes(search.toLowerCase());

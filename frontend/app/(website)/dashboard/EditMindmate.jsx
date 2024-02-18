@@ -24,7 +24,7 @@ const customStyles = {
   },
 };
 
-const EditDashboard = ({ showEdit, setShowEdit }) => {
+const EditDashboard = () => {
   const { mindmate } = useContext(Context);
   const [page, setPage] = useState(1);
   const [user, setUser] = useState({
@@ -33,7 +33,7 @@ const EditDashboard = ({ showEdit, setShowEdit }) => {
     anonymous: "",
   });
   const context = useContext(Context);
-  const { getUser } = useContext(Context);
+  const { getUser, setShowEditProfile, showEditProfile } = useContext(Context);
 
   useEffect(() => {
     setUser({
@@ -54,7 +54,7 @@ const EditDashboard = ({ showEdit, setShowEdit }) => {
         console.log(res.data);
         if (res.status == 200) {
           toast.success("Updated successfully");
-          setShowEdit(false);
+          setShowEditProfile(false);
           getUser();
         }
       })
@@ -84,9 +84,9 @@ const EditDashboard = ({ showEdit, setShowEdit }) => {
     <div>
       <Toaster />
       <Modal
-        isOpen={showEdit}
+        isOpen={showEditProfile}
         onRequestClose={() => {
-          setShowEdit(false);
+          setShowEditProfile(false);
         }}
         style={customStyles}
       >

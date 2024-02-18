@@ -19,7 +19,8 @@ const customStyles = {
 };
 
 const EditDashboard = () => {
-  const { showConsent, setShowConsent } = useContext(Context);
+  const { showConsent, setShowConsent, setShowEditProfile } =
+    useContext(Context);
 
   return (
     <div>
@@ -64,6 +65,7 @@ const EditDashboard = () => {
             onClick={(e) => {
               localStorage.setItem("mindmate", true);
               setShowConsent(false);
+              setShowEditProfile(true)
             }}
           >
             Ok

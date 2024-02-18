@@ -6,6 +6,7 @@ import BASE_URL from "../../../url";
 import Context from "../../../../context/Context";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
+import { AiFillStar } from "react-icons/ai";
 
 export default function MentorCard({
   activeCard = 0,
@@ -14,6 +15,7 @@ export default function MentorCard({
   key,
   bigCard = false,
   data,
+  recommanded = false,
 }) {
   const { user, setClickedUser, getUser } = useContext(Context);
   const [available, setAvailable] = useState(false);
@@ -51,6 +53,11 @@ export default function MentorCard({
           {data?.availability}
         </p>
       )}
+      {recommanded ? (
+        <div className="flex items-center text-sm text-darkGreen border border-darkGreen px-3 absolute right-3 top-3 rounded-lg">
+          <AiFillStar className="mr-2" /> Recommanded
+        </div>
+      ) : null}
       <div className="sm:w-[8vw] w-[35vw] h-[35vw]  sm:h-[8vw] mt-8 rounded-[100%] bg-gradient-to-r from-lightGreen to-darkGreen p-1">
         <Image
           src={data?.profile}

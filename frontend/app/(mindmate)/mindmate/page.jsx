@@ -112,9 +112,11 @@ const Trubuddy = () => {
                 className="font-medium mb-3 md:mb-5 flex items-center justify-between w-11/12 md:w-9/12 mx-auto"
               >
                 {e?.title} :
-                <span className="bg-[#CCECFF] px-4 py-0.5 text-start w-[60%] md:w-8/12 break-words rounded-md border">
-                  {e?.value}
-                </span>
+                <div className="bg-gradient-to-r from-lightGreen text-[#444] to-darkGreen from-[60%] p-[0.5px] shadow-md shadow-[#dedede] text-start w-[60%] md:w-8/12 break-words rounded-md border">
+                  <div className="px-4 py-1 w-full rounded-md bg-white">
+                    {e?.value}
+                  </div>
+                </div>
               </div>
             );
           })}

@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { format } from "timeago.js";
 import Meeting from "./meeting";
+import MentorCard from "../components/mentors/mentor-card";
 
 const Page = () => {
   const [activeCard, setActiveCard] = useState(2);
@@ -38,7 +39,7 @@ const Page = () => {
   ];
   const context = useContext(Context);
   const id = context?.clickedUser?._id;
-  const { user, setShowLogin, clickedUser, allMindmates } = useContext(Context);
+  const { user, setShowLogin, clickedUser, recommanded } = useContext(Context);
   const socket = io(SOCKET_URL);
   const history = useRouter();
   const chatContainerRef = useRef();
@@ -222,18 +223,14 @@ const Page = () => {
           </h1>
         </div>
         <div className="h-[88%] rounded-b-2xl bg-white overflow-y-auto">
-          {allMindmates?.map((cardData) => {
-            return (
-              <MenotrCard
-                key={cardData?.id}
-                activeCard={activeCard}
-                setActiveCard={setActiveCard}
-                cardData={cardData}
-                bigCard={true}
-                data={cardData}
-              />
-            );
-          })}
+          <MentorCard
+            cardData={recommanded}
+            data={recommanded}
+            bigCard={true}
+            key={recommanded?.id}
+            setActiveCard={setActiveCard}
+            recommanded={true}
+          />
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import CryptoJS from "crypto-js";
 import Context from "./Context";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import BASE_URL, { SOCKET_URL, URL } from "../app/url";
+import BASE_URL, { PYTHON_URL, SOCKET_URL, URL } from "../app/url";
 
 const State = (props) => {
   const [user, setUser] = useState();
@@ -16,6 +16,8 @@ const State = (props) => {
   const [width, setWidth] = useState();
   const [posts, setPosts] = useState([]);
   const [showConsent, setShowConsent] = useState(false);
+  const [showEditProfile, setShowEditProfile] = useState(false);
+  const [recommanded, setRecommanded] = useState();
   const [questionnaire, setQuestionnaire] = useState({
     age: "",
     problem: "",
@@ -81,6 +83,26 @@ const State = (props) => {
       });
   };
 
+  const getRecommanded = async () => {
+    console.log("first");
+    console.log(user?.questionnaire);
+    if (user?.questionnaire?.backendAnswers?.length > 1) {
+      axios
+        .post(`${PYTHON_URL}/find_similarity`, {
+          user_data: user?.questionnaire?.backendAnswers,
+        })
+        .then(async (res) => {
+          let id = res.data.id;
+          console.log("Recommanded" + id);
+          let data = await allMindmates?.find((e) => e?._id === id);
+          setRecommanded(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   useEffect(() => {
     getMindmates();
     getUser();
@@ -93,6 +115,10 @@ const State = (props) => {
   useEffect(() => {
     getQueries();
   }, [user]);
+
+  useEffect(() => {
+    getRecommanded();
+  }, [user, allMindmates]);
 
   const dcrpyt = (text) => {
     var bytes = CryptoJS.AES.decrypt(text, "MINDMATES");
@@ -124,6 +150,10 @@ const State = (props) => {
         showConsent,
         getQueries,
         setShowConsent,
+        setShowEditProfile,
+        showEditProfile,
+        getRecommanded,
+        recommanded,
       }}
     >
       {props.children}
