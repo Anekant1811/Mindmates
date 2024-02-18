@@ -23,7 +23,7 @@ meeting.post("/create", async (req, res) => {
       const resp = await transporter.sendMail({
         to: email,
         subject: "Regarding Online session",
-        text: `Hello MindMate! \n\nWe hope this email finds you well.\n\nThis mail is to inform you that one of our mates, ${data?.name}, has requested for an online meet. They've expressed a desire to discuss some issues personally with you in a one-on-one session.\n\n Kindly revert back to the mate via chat box. \n\nRegards.`,
+        text: `Hello MindMate! \n\nWe hope this email finds you well.\n\nThis mail is to inform you that one of our mates, ${data?.anonymous}, has requested for an online meet. They've expressed a desire to discuss some issues personally with you in a one-on-one session.\n\n Kindly revert back to the mate via chat box. \n\nRegards.`,
       });
       if (resp.accepted.includes(email)) {
         res.send(result);

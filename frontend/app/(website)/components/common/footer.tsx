@@ -5,7 +5,7 @@ import { MdEmail } from "react-icons/md";
 import { IoLocationSharp } from "react-icons/io5";
 export default function Footer() {
   return (
-    <footer className="py-5 md:py-12 px-[11vw] md:px-[9vw] bg-background">
+    <footer id="footer" className="py-5 md:py-12 px-[11vw] md:px-[9vw] bg-background">
       <div className="flex flex-wrap lg:flex-nowrap mx-auto justify-evenly gap-2 md:gap-8 text-center max-w-[100rem]">
         <div className="sm:w-1/4">
           <Image

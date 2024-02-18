@@ -51,10 +51,11 @@ const EditDashboard = ({ showEdit, setShowEdit }) => {
         id: context?.user?._id,
       })
       .then((res) => {
+        console.log(res.data);
         if (res.status == 200) {
-          getUser();
           toast.success("Updated successfully");
           setShowEdit(false);
+          getUser();
         }
       })
       .catch((err) => {

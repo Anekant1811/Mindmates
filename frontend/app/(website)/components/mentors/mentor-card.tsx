@@ -76,7 +76,7 @@ export default function MentorCard({
         })}
       </div>
       <p
-        className={cx("text-center mb-3", {
+        className={cx("text-center line-clamp-3 mb-3", {
           "text-[#172048]": activeCard !== cardData?.id,
         })}
       >

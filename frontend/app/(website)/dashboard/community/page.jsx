@@ -30,7 +30,7 @@ export default function Queries() {
                   onChange={(e) => {
                     setText(e.target.value);
                   }}
-                  placeholder="What you wanna talk about?"
+                  placeholder="What do you want to talk about?"
                   className="w-11/12 outline-none bg-background mr-2 md:mr-4 rounded-xl px-5 py-2 border border-[#bdbdbd]"
                 />{" "}
                 <button

@@ -108,7 +108,17 @@ login.post("/update-questionnaire", async (req, res) => {
   }
 
   let questionnaire = { age, problem, answers, backendAnswers };
-  User.updateOne({ _id: id }, { questionnaire })
+  User.updateOne(
+    { _id: id },
+    {
+      $set: {
+        "questionnaire.age": age,
+        "questionnaire.problem": problem,
+        "questionnaire.answers": answers,
+        "questionnaire.backendAnswers": backendAnswers,
+      },
+    }
+  )
     .then((response) => {
       res.send(response);
     })
@@ -128,6 +138,7 @@ login.post("/update", async (req, res) => {
       anonymous,
     }
   );
+  console.log(response);
   res.send(response);
 });
 

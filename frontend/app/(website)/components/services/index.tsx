@@ -31,6 +31,7 @@ export default function ServicesIndex() {
       avatarUrl: "/images/hospital-avatar.svg",
       title: "Visit Hospitals",
       desc: "Get priority services in hospitals with Haidoc. Which allows you to go to the hospital more practically and save time.",
+      redirectUrl: "/hospitals",
     },
   ];
   const [activeCard, setActiveCard] = useState(2);

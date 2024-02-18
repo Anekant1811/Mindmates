@@ -1,13 +1,17 @@
 "use client";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import UserMenu from "../../components/common/user-menu";
 import Context from "../../../../context/Context";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function Queries() {
-  const { user, queries } = useContext(Context);
+  const { user, queries, getQueries } = useContext(Context);
   const history = useRouter();
+
+  useEffect(() => {
+    getQueries();
+  }, []);
 
   return (
     <div className="flex md:flex-row flex-col bg-white px-[9vw]">
@@ -68,7 +72,7 @@ const Block = ({ data }) => {
             )}
           </div>
         </div>
-        {data?.staus == "Pending" && (
+        {data?.status == "Pending" && (
           <Image
             src="/logos/duo.svg"
             onClick={(e) => {

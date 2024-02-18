@@ -33,7 +33,7 @@ const Meeting = ({ show, setShow }) => {
   });
 
   useEffect(() => {
-    setdata({ ...data, name: user?.name, email: user?.email });
+    setdata({ ...data, name: user?.anonymous, email: user?.email });
   }, [user]);
 
   return (
@@ -76,7 +76,7 @@ const Meeting = ({ show, setShow }) => {
           <Input
             type="number"
             placeholder="Enter your phone no"
-            title="Name"
+            title="Phone"
             value={data?.phone}
             onchange={(e) => {
               setdata({ ...data, phone: e.target.value });

@@ -122,6 +122,7 @@ const State = (props) => {
         posts,
         getPosts,
         showConsent,
+        getQueries,
         setShowConsent,
       }}
     >
