@@ -36,7 +36,7 @@ def tokenizer(str):
 def find_similarity():
     user_data = request.json['user_data']
     
-    data = requests.get('https://4302-115-245-99-238.ngrok-free.app/api/mindmate/get-all')
+    data = requests.get('https://c399-115-245-99-238.ngrok-free.app/api/mindmate/get-all')
     data = json.loads(data.text)
     df = pd.DataFrame(data)
     df = df.drop(['password','__v','mates','meeting_url','profile','address','availability','name','anonymous','email'],axis=1)

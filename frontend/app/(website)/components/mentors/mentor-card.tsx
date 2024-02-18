@@ -48,15 +48,25 @@ export default function MentorCard({
       key={key}
       onClick={() => setActiveCard(cardData?.id)}
     >
-      {!available && (
+      {!available && !recommanded && (
         <p className="absolute right-3 top-3 border px-3 rounded-lg border-gray text-gray text-sm">
           {data?.availability}
         </p>
       )}
-      {recommanded ? (
+      {recommanded && available ? (
         <div className="flex items-center text-sm text-darkGreen border border-darkGreen px-3 absolute right-3 top-3 rounded-lg">
-          <AiFillStar className="mr-2" /> Recommanded
+          <AiFillStar className="mr-2" /> Recommended
         </div>
+      ) : null}
+      {recommanded && !available ? (
+        <>
+          <div className="flex items-center text-sm text-darkGreen border border-darkGreen px-3 absolute right-3 top-3 rounded-lg">
+            <AiFillStar className="mr-2" /> Recommended
+          </div>
+          <p className="absolute right-3 top-[3vw] border px-3 rounded-lg border-gray text-gray text-sm">
+            {data?.availability}
+          </p>
+        </>
       ) : null}
       <div className="sm:w-[8vw] w-[35vw] h-[35vw]  sm:h-[8vw] mt-8 rounded-[100%] bg-gradient-to-r from-lightGreen to-darkGreen p-1">
         <Image
