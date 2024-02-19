@@ -115,26 +115,25 @@ login.post("/update-questionnaire", async (req, res) => {
       "You have very warm, satisfying, trusting relationships with others; are concerned about the welfare of others; are capable of strong empathy, affection, and intimacy; and understand the give and take of human relationships.";
   }
 
-  setTimeout(() => {
-    console.log(answers);
-    User.updateOne(
-      { _id: id },
-      {
-        $set: {
-          "questionnaire.age": age,
-          "questionnaire.problem": problem,
-          "questionnaire.answers": answers,
-          "questionnaire.backendAnswers": backendAnswers,
-        },
-      }
-    )
-      .then((response) => {
-        res.send(response);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, 500);
+  User.updateOne(
+    { _id: id },
+    {
+      $set: {
+        "questionnaire.age": age,
+        "questionnaire.problem": problem,
+        "questionnaire.answers": answers,
+        "questionnaire.backendAnswers": backendAnswers,
+      },
+    }
+  )
+    .then(async (response) => {
+      let data = await User.findOne({ _id: id });
+      console.log(data);
+      res.json({ response, data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 login.post("/update", async (req, res) => {

@@ -65,7 +65,6 @@ const EditDashboard = () => {
             onClick={(e) => {
               localStorage.setItem("mindmate", true);
               setShowConsent(false);
-              setShowEditProfile(true)
             }}
           >
             Ok

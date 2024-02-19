@@ -154,6 +154,7 @@ const State = (props) => {
         showEditProfile,
         getRecommanded,
         recommanded,
+        setUser,
       }}
     >
       {props.children}

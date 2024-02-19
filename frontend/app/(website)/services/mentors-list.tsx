@@ -73,14 +73,16 @@ export default function MentorsList() {
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-        <MentorCard
-          cardData={recommanded}
-          data={recommanded}
-          bigCard={true}
-          key={recommanded?.id}
-          setActiveCard={setActiveCard}
-          recommanded={true}
-        />
+        {recommanded?._id && (
+          <MentorCard
+            cardData={recommanded}
+            data={recommanded}
+            bigCard={true}
+            key={recommanded?.id}
+            setActiveCard={setActiveCard}
+            recommanded={true}
+          />
+        )}
         {allMindmates
           ?.filter((e) => {
             return e?.anonymous?.toLowerCase().includes(search.toLowerCase());

@@ -500,7 +500,7 @@ const EachQuestion = ({ params }) => {
 
 const Block = ({ data, page }) => {
   const history = useRouter();
-  const { setQuestionnaire, questionnaire, getUser, user } =
+  const { setQuestionnaire, questionnaire, setUser, user } =
     useContext(Context);
 
   return (
@@ -519,7 +519,7 @@ const Block = ({ data, page }) => {
             .then((response) => {
               console.log(response);
               if (response.status == 200) {
-                getUser();
+                setUser(response.data.data);
                 history.push("/questionnaire");
               }
             })

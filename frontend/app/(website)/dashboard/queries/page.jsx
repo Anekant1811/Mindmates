@@ -72,7 +72,7 @@ const Block = ({ data }) => {
             )}
           </div>
         </div>
-        {data?.status == "Pending" && (
+        {data?.status !== "Completed" && (
           <Image
             src="/logos/duo.svg"
             onClick={(e) => {
