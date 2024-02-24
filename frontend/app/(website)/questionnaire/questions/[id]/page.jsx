@@ -1,5 +1,4 @@
 "use client";
-import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
 import axios from "axios";
@@ -518,7 +517,6 @@ const Block = ({ data, page }) => {
         answersUpdated[page - 1] = data?.value;
         setQuestionnaire({ ...questionnaire, answers: [...answersUpdated] });
         if (page == 13) {
-          console.log(questionnaire);
           axios
             .post(`${BASE_URL}/login/update-questionnaire`, {
               ...questionnaire,

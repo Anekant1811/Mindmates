@@ -14,29 +14,6 @@ import MentorCard from "../components/mentors/mentor-card";
 
 const Page = () => {
   const [activeCard, setActiveCard] = useState(2);
-  const mentorCardsData = [
-    {
-      id: 1,
-      avatarUrl: "/images/doctor-avatar.svg",
-      title: "Your Well-Wisher",
-      category: ["Depression", "Phychology"],
-      desc: "You can connect directly, quickly and easily, and there is no need to doubt the quality of the consultation and treatment offered.",
-    },
-    {
-      id: 2,
-      avatarUrl: "/images/doctor-avatar.svg",
-      title: "Your Well-Wisher",
-      category: ["Depression", "Phychology"],
-      desc: "You can connect directly, quickly and easily, and there is no need to doubt the quality of the consultation and treatment offered.",
-    },
-    {
-      id: 3,
-      avatarUrl: "/images/doctor-avatar.svg",
-      title: "Your Well-Wisher",
-      category: ["Depression", "Phychology"],
-      desc: "You can connect directly, quickly and easily, and there is no need to doubt the quality of the consultation and treatment offered.",
-    },
-  ];
   const context = useContext(Context);
   const id = context?.clickedUser?._id;
   const { user, setShowLogin, clickedUser, recommanded } = useContext(Context);
