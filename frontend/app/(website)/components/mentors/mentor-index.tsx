@@ -17,10 +17,10 @@ export default function MentorIndex() {
       </h2>
       <div className="w-full bg-gradient-to-tr flex items-center flex-col from-[#d5e9f5] to-[#d4f5f5]">
         <div className="w-4/5 sm:flex sm:gap-y-3 pt-4 gap-x-8 justify-center mx-auto">
-          {allMindmates?.slice(0, 3)?.map((cardData) => {
+          {allMindmates?.slice(0, 3)?.map((cardData, i) => {
             return (
               <MenotrCard
-                key={cardData?.id}
+                key={i}
                 activeCard={activeCard}
                 setActiveCard={setActiveCard}
                 cardData={cardData}

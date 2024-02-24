@@ -11,7 +11,6 @@ export default function MentorCard({
   activeCard = 0,
   setActiveCard,
   cardData,
-  key,
   bigCard = false,
   data,
   recommanded = false,
@@ -41,7 +40,6 @@ export default function MentorCard({
       }
         ${activeCard === cardData?.id ? "sm:my-4" : ""}
       `}
-      key={key}
       onClick={() => setActiveCard(cardData?.id)}
     >
       {!available && !recommanded && (
@@ -77,13 +75,13 @@ export default function MentorCard({
         {cardData?.anonymous}
       </h2>
       <div className="flex sm:flex-wrap lg:flex-nowrap justify-center gap-2 mt-2 mb-2">
-        {cardData?.expertise?.map((i) => {
+        {cardData?.expertise?.map((e, i) => {
           return (
             <div
               key={i}
               className="text-sm sm:text-xs lg:text-sm px-5 py-0.5 rounded-3xl border-[#1720488a] border"
             >
-              {i}
+              {e}
             </div>
           );
         })}

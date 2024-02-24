@@ -3,9 +3,9 @@ import Image from "next/image";
 import React from "react";
 import Lottie from "react-lottie-player";
 import { useRouter } from "next/navigation";
+import obj from "./anonymous-identity.json";
 
 export default function ServiceCard({
-  key,
   cardData,
   setActiveCard,
   activeCard,
@@ -20,7 +20,6 @@ export default function ServiceCard({
           ? "bg-gradient-to-br from-lightGreen to-darkGreen text-white"
           : "w-fit"
       }`}
-      key={key}
       onClick={() => {
         setActiveCard(cardData?.id);
         cardData?.redirectUrl !== undefined &&
@@ -32,7 +31,7 @@ export default function ServiceCard({
           <div className="w-full mx-auto block">
             <Lottie
               loop
-              animationData={"/public/images/anonymous-identity.json"}
+              animationData={obj}
               play
               className="mx-auto"
               style={{ width: "50%", height: "auto" }}
