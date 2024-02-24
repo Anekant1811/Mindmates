@@ -24,6 +24,12 @@ const TrubuddyChat = ({ params }) => {
   const [messageInput, setMessageInput] = useState("");
   const [user, setUser] = useState();
 
+  const router = useRouter();
+
+  if (!router.isFallback && id) {
+    router.push("/");
+  }
+
   useEffect(() => {
     axios
       .post(`${BASE_URL}/login/get-one/${id}`)
@@ -112,7 +118,9 @@ const TrubuddyChat = ({ params }) => {
     getData();
   }, []);
 
-  return (
+  return router.isFallback ? (
+    <div>Loading...</div>
+  ) : (
     <div>
       <Navbar />
       <div className="absolute top-0 left-0 z-0">

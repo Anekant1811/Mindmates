@@ -8,6 +8,12 @@ import Context from "../../../../../context/Context";
 
 const EachQuestion = ({ params }) => {
   let val = params.id;
+  const router = useRouter();
+
+  if (!router.isFallback && !val) {
+    router.push("/");
+  }
+
   val = parseInt(val);
 
   let data = [
@@ -464,7 +470,9 @@ const EachQuestion = ({ params }) => {
 
   let tempData = data[val - 1];
 
-  return (
+  return router.isFallback ? (
+    <div>Loading...</div>
+  ) : (
     <div className="w-full md:h-[80vh] flex flex-col items-center justify-center">
       <div className="flex flex-col items-center">
         <h1 className="text-2xl md:text-3xl bg-clip-text text-transparent bg-gradient-to-r from-darkGreen via-lightGreen to-darkGreen text-center font-semibold md:font-extrabold gradientHover cursor-pointer text-darkGreen mb-1">
