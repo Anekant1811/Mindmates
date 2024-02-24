@@ -14,6 +14,8 @@ const User = require("./db/schema/loginSchema");
 const app = express();
 const meeting = require("./routes/meeting");
 
+let BASE_URL = "https://mindmates-seven.vercel.app";
+
 // Must things
 connectToDb();
 
@@ -83,8 +85,8 @@ app.get(
 app.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: `https://mindmates-seven.vercel.app/dashboard`,
-    failureRedirect: `https://mindmates-seven.vercel.app`,
+    successRedirect: `${BASE_URL}/dashboard`,
+    failureRedirect: `${BASE_URL}`,
   })
 );
 
@@ -105,7 +107,7 @@ app.get("/logout", (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect(`https://mindmates-seven.vercel.app`);
+    res.redirect(`${BASE_URL}`);
   });
 });
 
