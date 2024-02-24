@@ -54,6 +54,7 @@ const Login = () => {
           />
           <div
             onClick={(e) => {
+              console.log(`${URL}auth/google/callback`);
               window.open(`${URL}auth/google/callback`, "_self");
             }}
             className="cursor-pointer rounded-md w-[50vw] md:w-[13vw]"

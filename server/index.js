@@ -84,7 +84,7 @@ app.get(
   "/auth/google/callback",
   passport.authenticate("google", {
     successRedirect: `https://mindmates-seven.vercel.app/dashboard`,
-    failureRedirect: `https://mindmates-seven.vercel.app/`,
+    failureRedirect: `https://mindmates-seven.vercel.app`,
   })
 );
 
@@ -105,7 +105,7 @@ app.get("/logout", (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect(`https://mindmates-seven.vercel.app/`);
+    res.redirect(`https://mindmates-seven.vercel.app`);
   });
 });
 
