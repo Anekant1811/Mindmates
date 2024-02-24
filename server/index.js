@@ -32,8 +32,13 @@ app.use(
 app.use(
   session({
     secret: process.env.CLIENT_SECRET_ID,
-    resave: true,
+    // resave: true,
+    resave: false,
     saveUninitialized: true,
+    cookie: {
+      secure: true, // Set to true in production
+      sameSite: "None",
+    },
   })
 );
 app.use(passport.initialize());
