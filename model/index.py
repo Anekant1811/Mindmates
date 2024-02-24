@@ -1,9 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS  # Import CORS from flask_cors module
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 import requests
 import json
 from sklearn.feature_extraction.text import TfidfVectorizer
