@@ -58,7 +58,7 @@ export default function Queries() {
               </div>
               <div className="px-1">
                 <h1 className="text-xl font-semibold text-gray">
-                  Posts you've shared
+                  Posts you&apos;ve shared
                 </h1>
                 <div className="h-[35vh] pt-4 overflow-y-auto">
                   {posts
