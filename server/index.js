@@ -21,7 +21,7 @@ connectToDb();
 app.use(express.json());
 app.use(
   cors({
-    origin: process.env.BASE_URL,
+    origin: ["http://localhost:3000", "https://mindmates-seven.vercel.app/"],
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
