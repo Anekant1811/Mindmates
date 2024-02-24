@@ -84,8 +84,6 @@ const State = (props) => {
   };
 
   const getRecommanded = async () => {
-    console.log("first");
-    console.log(user?.questionnaire);
     if (user?.questionnaire?.backendAnswers?.length > 1) {
       axios
         .post(`${PYTHON_URL}/find_similarity`, {
