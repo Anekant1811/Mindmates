@@ -21,7 +21,7 @@ connectToDb();
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: process.env.BASE_URL,
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
@@ -83,8 +83,8 @@ app.get(
 app.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: `http://localhost:3000/dashboard`,
-    failureRedirect: `http://localhost:3000`,
+    successRedirect: `${process.env.BASE_URL}/dashboard`,
+    failureRedirect: `${process.env.BASE_URL}`,
   })
 );
 
@@ -105,7 +105,7 @@ app.get("/logout", (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect(`http://localhost:3000`);
+    res.redirect(`${process.env.BASE_URL}`);
   });
 });
 
