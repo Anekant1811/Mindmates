@@ -15,6 +15,7 @@ const app = express();
 const meeting = require("./routes/meeting");
 
 let BASE_URL = "https://mindmates-seven.vercel.app";
+// let BASE_URL = "http://localhost:3000";
 
 // Must things
 connectToDb();
@@ -43,13 +44,13 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET_ID,
-      callbackURL: "https://mindmates.onrender.com/auth/google/callback",
+      callbackURL: `https://mindmates.onrender.com/auth/google/callback`,
       scope: ["profile", "email"],
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
         let user = await User.findOne({ googleId: profile.id });
-
+        console.log(user);
         if (!user) {
           user = new User({
             googleId: profile.id,

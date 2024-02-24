@@ -128,7 +128,6 @@ login.post("/update-questionnaire", async (req, res) => {
   )
     .then(async (response) => {
       let data = await User.findOne({ _id: id });
-      console.log(data);
       res.json({ response, data });
     })
     .catch((err) => {
