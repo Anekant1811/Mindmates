@@ -1,5 +1,5 @@
 const route = require("express").Router();
-const { validateToken } = require("../server/middleware/index");
+const { validateToken } = require("./index");
 const Message = require("./schema");
 
 route.get("/get-messages/:mate_id/:mindmate_id", async (req, res) => {

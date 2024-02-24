@@ -11,7 +11,6 @@ app.use(cors());
 app.use(express.json());
 
 const server = http.createServer(app);
-// Initialize Socket.IO and bind it to the server
 const io = socketIO(server, {
   cors: {
     origin: "*",
@@ -19,7 +18,6 @@ const io = socketIO(server, {
 });
 
 const mongoose = require("mongoose");
-const User = require("../server/db/schema/loginSchema");
 
 mongoose
   .connect(
