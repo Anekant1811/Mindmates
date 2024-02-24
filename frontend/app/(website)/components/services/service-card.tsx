@@ -1,10 +1,9 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import cx from "classNames";
-import identity from "/public/images/anonymous-identity.json";
 import Lottie from "react-lottie-player";
 import { useRouter } from "next/navigation";
+
 export default function ServiceCard({
   key,
   cardData,
@@ -13,18 +12,14 @@ export default function ServiceCard({
   bigCard = false,
   slick = false,
 }) {
-  console.log(slick, " ");
   const router = useRouter();
   return (
     <div
-      className={cx(
-        "rounded-2xl py-8 px-4 shadow-md shadow-[#c5c5c5] bg-background md:mb-0 mb-4 sm:w-1/3 flex flex-col items-center cursor-pointer transition-all",
-        {
-          "bg-gradient-to-br from-lightGreen to-darkGreen text-white":
-            activeCard === cardData?.id,
-          "w-fit": slick,
-        }
-      )}
+      className={`rounded-2xl py-8 px-4 shadow-md shadow-[#c5c5c5] bg-background md:mb-0 mb-4 sm:w-1/3 flex flex-col items-center cursor-pointer transition-all ${
+        activeCard === cardData?.id
+          ? "bg-gradient-to-br from-lightGreen to-darkGreen text-white"
+          : "w-fit"
+      }`}
       key={key}
       onClick={() => {
         setActiveCard(cardData?.id);
@@ -37,7 +32,7 @@ export default function ServiceCard({
           <div className="w-full mx-auto block">
             <Lottie
               loop
-              animationData={identity}
+              animationData={"/public/images/anonymous-identity.json"}
               play
               className="mx-auto"
               style={{ width: "50%", height: "auto" }}
@@ -57,9 +52,9 @@ export default function ServiceCard({
         {cardData?.title}
       </h2>
       <p
-        className={cx("text-center text-base", {
-          "text-[#172048]": activeCard !== cardData?.id,
-        })}
+        className={`text-center text-base ${
+          activeCard !== cardData?.id ? "text-[#172048]" : ""
+        }`}
       >
         {cardData?.desc}
       </p>

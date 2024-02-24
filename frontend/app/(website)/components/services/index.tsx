@@ -1,14 +1,11 @@
 "use client";
 import React, { useContext, useState } from "react";
 import ServiceCard from "./service-card";
-import cx from "classNames";
 import Image from "next/image";
 import bg from "../../../Assets/elements/Group 7.png";
 import bg1 from "../../../Assets/elements/Group 6.png";
 import Context from "../../../../context/Context";
-// import Slider from "react-slick";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
+
 export default function ServicesIndex() {
   const { width } = useContext(Context);
   const ServiceCardData = [
@@ -83,15 +80,13 @@ export default function ServicesIndex() {
             <div
               onClick={() => setActiveCard(cardData?.id)}
               key={cardData?.id}
-              className={cx(
-                "h-3 w-3 rounded-[100%] bg-background border-solid cursor-pointer",
-                {
-                  "bg-gradient-to-r from-lightGreen to-darkGreen":
-                    activeCard === cardData?.id,
-                  "border-solid border-gray-600 border":
-                    activeCard !== cardData?.id,
-                }
-              )}
+              className={`h-3 w-3 rounded-[100%] bg-background border-solid cursor-pointer ${
+                activeCard === cardData?.id
+                  ? "bg-gradient-to-r from-lightGreen to-darkGreen"
+                  : activeCard !== cardData?.id
+                  ? "border-solid border-gray-600 border"
+                  : ""
+              }`}
             ></div>
           );
         })}

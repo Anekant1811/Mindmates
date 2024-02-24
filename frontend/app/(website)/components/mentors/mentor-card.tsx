@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
-import cx from "classNames";
 import axios from "axios";
 import BASE_URL from "../../../url";
 import Context from "../../../../context/Context";
@@ -35,16 +34,13 @@ export default function MentorCard({
 
   return (
     <div
-      className={cx(
-        `rounded-2xl my-4 py-4 px-4 h-auto mx-auto relative cursor-pointer bg-background ${
-          !bigCard ? "sm:w-1/3" : "w-[92%] mx-auto"
-        } flex flex-col items-center border border-lightGreen ${
-          available ? "grayscale-0" : "grayscale"
-        }`,
-        {
-          "sm:my-4": activeCard === cardData?.id,
-        }
-      )}
+      className={`rounded-2xl my-4 py-4 px-4 h-auto mx-auto relative cursor-pointer bg-background ${
+        !bigCard ? "sm:w-1/3" : "w-[92%] mx-auto"
+      } flex flex-col items-center border border-lightGreen ${
+        available ? "grayscale-0" : "grayscale"
+      }
+        ${activeCard === cardData?.id ? "sm:my-4" : ""}
+      `}
       key={key}
       onClick={() => setActiveCard(cardData?.id)}
     >
@@ -93,9 +89,9 @@ export default function MentorCard({
         })}
       </div>
       <p
-        className={cx("text-center line-clamp-3 mb-3", {
-          "text-[#172048]": activeCard !== cardData?.id,
-        })}
+        className={`"text-center line-clamp-3 mb-3 ${
+          activeCard !== cardData?.id ? "text-[#172048]" : ""
+        })`}
       >
         {cardData?.bio}
       </p>
