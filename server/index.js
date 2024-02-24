@@ -43,7 +43,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET_ID,
-      callbackURL: "/auth/google/callback",
+      callbackURL: "https://mindmates.onrender.com/auth/google/callback",
       scope: ["profile", "email"],
     },
     async (accessToken, refreshToken, profile, done) => {
