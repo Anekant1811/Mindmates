@@ -32,7 +32,6 @@ app.use(
 app.use(
   session({
     secret: process.env.CLIENT_SECRET_ID,
-    // resave: true,
     saveUninitialized: true,
     resave: true,
     cookie: {
