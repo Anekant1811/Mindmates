@@ -16,8 +16,8 @@ const meeting = require("./routes/meeting");
 const https = require("https");
 const fs = require("fs");
 
-// let BASE_URL = "https://mindmates-seven.vercel.app";
-let BASE_URL = "http://localhost:3000";
+let BASE_URL = "https://mindmates-seven.vercel.app";
+// let BASE_URL = "http://localhost:3000";
 
 // Must things
 connectToDb();

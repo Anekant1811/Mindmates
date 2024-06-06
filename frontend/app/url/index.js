@@ -1,5 +1,5 @@
 const BASE_URL = "https://mindmates.onrender.com/api";
-export const URL = "http://13.126.210.205:5000/";
+export const URL = "https://consciousleap.co:8888/";
 // export const URL = "https://mindmates.onrender.com/";
 // export const SOCKET_URL = "https://mindmates-2.onrender.com/";
 // export const PYTHON_URL = "https://mindmates-1.onrender.com";
