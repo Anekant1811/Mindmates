@@ -14,8 +14,8 @@ const User = require("./db/schema/loginSchema");
 const app = express();
 const meeting = require("./routes/meeting");
 
-let BASE_URL = "https://mindmates-seven.vercel.app";
-// let BASE_URL = "http://localhost:3000";
+// let BASE_URL = "https://mindmates-seven.vercel.app";
+let BASE_URL = "http://localhost:3000";
 
 // Must things
 connectToDb();
