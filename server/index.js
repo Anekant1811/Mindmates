@@ -133,6 +133,6 @@ app.use("/api/mindmate", mindmate);
 app.use("/api/meeting", meeting);
 
 // Listening to the port
-httpsServer.listen(5000, () => {
+httpsServer.listen(8888, () => {
   console.log("Server started");
 });
