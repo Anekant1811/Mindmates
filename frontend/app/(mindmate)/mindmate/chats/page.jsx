@@ -77,7 +77,7 @@ const Trubuddy = () => {
           </div>
         ) : (
           <div className="w-full grid overflow-y-auto pb-5 grid-cols-3 gap-3 md:gap-5 px-3 md:px-5 pt-2 md:pt-3">
-            {mindmate?.mates?.map((e) => {
+            {[...new Set(mindmate?.mates)]?.map((e) => {
               return <BuddyBlock id={e} key={e} />;
             })}
           </div>
