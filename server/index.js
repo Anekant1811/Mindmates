@@ -13,12 +13,21 @@ const OAuth2Strategy = require("passport-google-oauth2").Strategy;
 const User = require("./db/schema/loginSchema");
 const app = express();
 const meeting = require("./routes/meeting");
+const https = require("https");
+const fs = require("fs");
 
 // let BASE_URL = "https://mindmates-seven.vercel.app";
 let BASE_URL = "http://localhost:3000";
 
 // Must things
 connectToDb();
+
+const options = {
+  key: fs.readFileSync("/etc/letsencrypt/live/consciousleap.co/privkey.pem"),
+  cert: fs.readFileSync("/etc/letsencrypt/live/consciousleap.co/fullchain.pem"),
+};
+
+const httpsServer = https.createServer(options, app);
 
 // Middlewares
 app.use(express.json());
@@ -124,6 +133,6 @@ app.use("/api/mindmate", mindmate);
 app.use("/api/meeting", meeting);
 
 // Listening to the port
-app.listen(5000, () => {
+httpsServer.listen(5000, () => {
   console.log("Server started");
 });
