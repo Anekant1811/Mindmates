@@ -26,9 +26,9 @@ const TrubuddyChat = ({ params }) => {
 
   const router = useRouter();
 
-  if (!router.isFallback && id) {
-    router.push("/");
-  }
+  // if (!router.isFallback && id) {
+  //   router.push("/");
+  // }
 
   useEffect(() => {
     axios
