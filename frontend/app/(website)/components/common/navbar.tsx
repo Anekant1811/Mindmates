@@ -16,8 +16,8 @@ export default function Navbar() {
   const navLinks = [
     { id: 1, title: "Home", url: "/" },
     { id: 2, title: "Service", url: "/#services" },
-    { id: 3, title: "Contact", url: "/#footer" },
     { id: 4, title: "About Us", url: "/#about-us" },
+    { id: 3, title: "Contact", url: "/#footer" },
   ];
 
   return (
