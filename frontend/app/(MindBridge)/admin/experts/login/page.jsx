@@ -3,13 +3,12 @@ import React, { useContext, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
-import BASE_URL from "../../../url/index";
+import BASE_URL from "../../../../url/index";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { getCookie, setCookie } from "cookies-next";
-import Context from "../../../../context/Context";
+import Context from "../../../../../context/Context";
 import Image from "next/image";
-import bg from "../../../Assets/positive-login.png";
 
 const Mindmate = () => {
   const [user, setUser] = useState({ email: "", password: "" });
@@ -27,7 +26,13 @@ const Mindmate = () => {
     <div className="flex items-center justify-center w-full text-gray h-[100vh]">
       <Toaster />
       <div className="bg-background md:flex hidden w-[50vw] h-full items-center justify-center">
-        <Image src={bg} alt="Rafiki" className="w-8/12" />
+        <Image
+          src={"/images/hero.gif"}
+          width={1000}
+          height={1000}
+          alt="Rafiki"
+          className="w-8/12"
+        />
       </div>
       <div className="md:w-[50vw] px-10 text-gray flex flex-col md:items-start items-center">
         <h1 className="text-3xl font-bold">WELCOME BACK!</h1>
@@ -71,7 +76,7 @@ const Mindmate = () => {
                   .then((response) => {
                     console.log(response);
                     if (response.status == 200) {
-                      history.push("/mindmate");
+                      history.push("/admin/experts");
                       setMindmate(response.data.user);
                       setCookie("token", response.data.jwtToken);
                     } else {

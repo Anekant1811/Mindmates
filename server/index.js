@@ -14,6 +14,7 @@ const User = require("./db/schema/loginSchema");
 const app = express();
 const meeting = require("./routes/meeting");
 const https = require("https");
+const http = require("http");
 const fs = require("fs");
 
 let BASE_URL = "https://mindmates-seven.vercel.app";
@@ -22,12 +23,7 @@ let BASE_URL = "https://mindmates-seven.vercel.app";
 // Must things
 connectToDb();
 
-const options = {
-  key: fs.readFileSync("/etc/letsencrypt/live/consciousleap.co/privkey.pem"),
-  cert: fs.readFileSync("/etc/letsencrypt/live/consciousleap.co/fullchain.pem"),
-};
-
-const httpsServer = https.createServer(options, app);
+const httpsServer = http.createServer(app);
 
 // Middlewares
 app.use(express.json());

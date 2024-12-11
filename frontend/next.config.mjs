@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
+    domains: [  
       "t4.ftcdn.net",
       "res.cloudinary.com",
       "files.slack.com",

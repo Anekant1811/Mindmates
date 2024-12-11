@@ -1,14 +1,14 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
-import Navbar from "../../Components/Navbar";
+import Navbar from "../../../Components/Navbar";
 import Image from "next/image";
 
-import bg from "../../../Assets/bg.jpg";
+import bg from "../../../../Assets/bg.jpg";
 import { usePathname, useRouter } from "next/navigation";
 import axios from "axios";
 import { getCookie } from "cookies-next";
-import Context from "../../../../context/Context";
-import BASE_URL from "../../../url";
+import Context from "../../../../../context/Context";
+import BASE_URL from "../../../../url";
 
 const Trubuddy = () => {
   const { mindmate, setMindmate } = useContext(Context);
@@ -45,14 +45,14 @@ const Trubuddy = () => {
           <p
             className="bg-black text-white text-sm md:text-base px-5 mt-0.5 py-0.5 ml-3 cursor-pointer w-fit rounded-lg"
             onClick={(e) => {
-              history.push("/mindmate");
+              history.push("/admin/experts");
             }}
           >
             @uid{mindmate?._id?.slice(mindmate?._id?.length - 4)}
           </p>
           <p
             onClick={(e) => {
-              history.push("/mindmate/chats");
+              history.push("/admin/experts/chats");
             }}
             className={`text-black font-semibold ml-2 md:ml-5 ${
               pathname.includes("/chats") ? "text-darkGreen" : "text-black"
@@ -62,7 +62,7 @@ const Trubuddy = () => {
           </p>
           <p
             onClick={(e) => {
-              history.push("/mindmate/schedule");
+              history.push("/admin/experts/schedule");
             }}
             className={`text-black font-semibold ml-2 md:ml-5 ${
               pathname.includes("/schedule") ? "text-darkGreen" : "text-black"
@@ -108,7 +108,7 @@ const BuddyBlock = ({ id }) => {
       className="bg-gray-200 flex p-1 md:p-2 rounded-md relative shadow-md shadow-gray-400 cursor-pointer"
       onClick={(e) => {
         e.preventDefault();
-        history.push(`/mindmate/chats/${id}`);
+        history.push(`/admin/experts/chats/${id}`);
       }}
     >
       <Image

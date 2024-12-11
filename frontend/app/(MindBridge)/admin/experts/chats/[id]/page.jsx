@@ -1,17 +1,17 @@
 "use client";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import Navbar from "../../../Components/Navbar";
+import Navbar from "../../../../Components/Navbar";
 import Image from "next/image";
 import { format } from "timeago.js";
-import bg from "../../../../Assets/bg.jpg";
+import bg from "../../../../../Assets/bg.jpg";
 import { io } from "socket.io-client";
 import { IoMdSend } from "react-icons/io";
 import { AiOutlineLeft } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { getCookie } from "cookies-next";
-import Context from "../../../../../context/Context";
-import BASE_URL, { SOCKET_URL } from "../../../../url/index";
+import Context from "../../../../../../context/Context";
+import BASE_URL, { SOCKET_URL } from "../../../../../url/index";
 
 const TrubuddyChat = ({ params }) => {
   const id = params.id;
@@ -137,7 +137,7 @@ const TrubuddyChat = ({ params }) => {
               size={26}
               className="mr-2 cursor-pointer"
               onClick={(e) => {
-                history.push("/mindmate/chats");
+                history.push("/admin/experts/chats");
               }}
             />
             <Image

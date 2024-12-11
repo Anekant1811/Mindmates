@@ -1,13 +1,12 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import Modal from "react-modal";
-
+import Context from '../../../../context/Context'
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { getCookie } from "cookies-next";
 import { AiOutlineClose } from "react-icons/ai";
-import Context from "../../../context/Context";
-import BASE_URL from "../../url";
+import BASE_URL from "../../../url";
 
 const customStyles = {
   overlay: {

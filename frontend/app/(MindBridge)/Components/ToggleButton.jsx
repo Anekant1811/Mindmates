@@ -8,7 +8,7 @@ const ToggleButton = () => {
   return (
     <div
       onClick={(e) => {
-        history.push("/mindmate/chats");
+        history.push("/admin/experts/chats");
       }}
       className="w-[5vw] h-[5vw] cursor-pointer border-2 border-lightGreen rounded-full flex items-center justify-center absolute right-5 bottom-5"
     >

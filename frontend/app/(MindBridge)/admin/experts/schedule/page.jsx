@@ -1,14 +1,13 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
-import Navbar from "../../Components/Navbar";
+import Navbar from "../../../Components/Navbar";
 import Image from "next/image";
-
-import bg from "../../../Assets/bg.jpg";
+import bg from "../../../../Assets/bg.jpg";
 import { usePathname, useRouter } from "next/navigation";
 import axios from "axios";
 import { getCookie } from "cookies-next";
-import Context from "../../../../context/Context";
-import BASE_URL from "../../../url";
+import Context from "../../../../../context/Context";
+import BASE_URL from "../../../../url";
 import { IoEnterOutline } from "react-icons/io5";
 import { TiTick } from "react-icons/ti";
 
@@ -72,7 +71,7 @@ const Trubuddy = () => {
           </p>
           <p
             onClick={(e) => {
-              history.push("/mindmate/chats");
+              history.push("/admin/experts/chats");
             }}
             className={`text-black font-semibold ml-2 md:ml-5 ${
               pathname.includes("/chats") ? "text-darkGreen" : "text-black"
@@ -82,7 +81,7 @@ const Trubuddy = () => {
           </p>
           <p
             onClick={(e) => {
-              history.push("/mindmate/schedule");
+              history.push("/admin/experts/schedule");
             }}
             className={`text-black font-semibold ml-2 md:ml-5 ${
               pathname.includes("/schedule") ? "text-darkGreen" : "text-black"

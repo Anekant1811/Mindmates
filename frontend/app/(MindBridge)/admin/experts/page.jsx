@@ -1,15 +1,15 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
-import bg from "../../Assets/bg.jpg";
+import bg from "../../../Assets/bg.jpg";
 import EditMindmate from "./EditMindmate";
 import axios from "axios";
-import BASE_URL from "../../url";
+import BASE_URL from "../../../url";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
-import Context from "../../../context/Context";
-import Navbar from "../Components/Navbar";
-import ToggleButton from "../Components/ToggleButton";
+import Context from "../../../../context/Context";
+import Navbar from "../../Components/Navbar";
+import ToggleButton from "../../Components/ToggleButton";
 
 const Trubuddy = () => {
   const [showEdit, setShowEdit] = useState(false);
@@ -80,46 +80,47 @@ const Trubuddy = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 w-full">
-          {[
-            {
-              title: "Name",
-              value: mindmate?.name,
-            },
-            {
-              title: "Email",
-              value: mindmate?.email,
-            },
-            {
-              title: "Address",
-              value: mindmate?.address,
-            },
-            {
-              title: "Expertise",
-              value: mindmate?.expertise[0],
-            },
-            {
-              title: "Availability",
-              value: mindmate?.availability,
-            },
-            {
-              title: "Meeting Url",
-              value: mindmate?.meeting_url,
-            },
-          ].map((e) => {
-            return (
-              <div
-                key={e?.title}
-                className="font-medium mb-3 md:mb-5 flex items-center justify-between w-11/12 md:w-9/12 mx-auto"
-              >
-                {e?.title} :
-                <div className="bg-gradient-to-r from-lightGreen text-[#444] to-darkGreen from-[60%] p-[0.5px] shadow-md shadow-[#dedede] text-start w-[60%] md:w-8/12 break-words rounded-md border">
-                  <div className="px-4 py-1 w-full rounded-md bg-white">
-                    {e?.value}
+          {mindmate &&
+            [
+              {
+                title: "Name",
+                value: mindmate?.name,
+              },
+              {
+                title: "Email",
+                value: mindmate?.email,
+              },
+              {
+                title: "Address",
+                value: mindmate?.address,
+              },
+              {
+                title: "Expertise",
+                value: mindmate?.expertise[0],
+              },
+              {
+                title: "Availability",
+                value: mindmate?.availability,
+              },
+              {
+                title: "Meeting Url",
+                value: mindmate?.meeting_url,
+              },
+            ].map((e) => {
+              return (
+                <div
+                  key={e?.title}
+                  className="font-medium mb-3 md:mb-5 flex items-center justify-between w-11/12 md:w-9/12 mx-auto"
+                >
+                  {e?.title} :
+                  <div className="bg-gradient-to-r from-lightGreen text-[#444] to-darkGreen from-[60%] p-[0.5px] shadow-md shadow-[#dedede] text-start w-[60%] md:w-8/12 break-words rounded-md border">
+                    <div className="px-4 py-1 w-full rounded-md bg-white">
+                      {e?.value}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
         <div className="w-3/12 -ml-14 bg-gray-300 my-2 h-[1.5px]"></div>
         <div className="md:w-[80%] mx-[2vw] md:mx-auto grid grid-cols-3 md:gap-y-0 gap-y-2 md:flex items-center mt-2 justify-center">

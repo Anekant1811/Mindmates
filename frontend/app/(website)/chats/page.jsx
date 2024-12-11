@@ -114,7 +114,7 @@ const Page = () => {
               <p className="text-sm">The Mate You Need the most</p>
             </div>
           </div>
-          {clickedUser?.meeting_url && (
+          {clickedUser?.meeting_url && (  
             <Image
               src="/logos/duo.svg"
               onClick={(e) => {

@@ -26,7 +26,7 @@ const Navbar = () => {
         <div
           onClick={(e) => {
             deleteCookie("token");
-            history.push("/mindmate/login");
+            history.push("/admin/experts/login");
           }}
           className="bg-white absolute top-[4.5vw] rounded-xl cursor-pointer right-[1vw]"
         >
